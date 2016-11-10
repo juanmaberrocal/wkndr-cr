@@ -2,8 +2,8 @@ default: &default
   adapter: postgresql
   encoding: unicode
   pool: 5
-  username: <%= Rails.application.secrets.database.username %>
-  password: <%= Rails.application.secrets.database.password %>
+  username: <%= Rails.application.secrets.database[:username] %>
+  password: <%= Rails.application.secrets.database[:password] %>
   socket: 5432
 
 development:
@@ -26,6 +26,6 @@ test:
  #      url: <%= ENV['DATABASE_URL'] %>
  #
 
- production:
-   <<: *default
-     database: wkndr_cr_prd
+production:
+  database: wkndr_cr_prd
+  <<: *default
