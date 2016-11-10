@@ -1,0 +1,8 @@
+// import bootstrap
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+// import components
+@import "components/color_palette"; // color palette
+@import "components/mixins"; // mixins
+@import "components/theme"; // theme

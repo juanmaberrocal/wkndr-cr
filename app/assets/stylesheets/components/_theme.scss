@@ -1,0 +1,27 @@
+body {
+	nav.navbar {
+		@include background-opacity($antiflashwhite, 0.8);
+		border-color: $grayblue !important;
+
+		div#navbar {
+			ul.nav.navbar-nav {
+				li {
+					a {
+						color: $gunmetal;
+						border-color: transparent !important;
+						border-style: solid !important;
+						border-width: 0;
+
+						&:hover {
+							color: $gunmetal-darkest;
+						}
+
+						&.active {
+							border-color: $coralred !important;
+						}
+					}
+				}
+			}
+		}
+	}
+}
