@@ -1,10 +1,13 @@
 angular.module("wkndrCr")
 	.controller("wkndrSignup", [
-		"$scope", "$auth", "bgChangeService", 
-		function($scope, $auth, bgChangeService){
+		"$scope", "Auth", "bgChangeService", 
+		function($scope, Auth, bgChangeService){
 			/*
 			handle singup form
 			*/
+			// show/hide form and success
+			$scope.signupSuccess = false;
+
 			// handle form errors
 			$scope.signupErrors = { errors: false, messages: [] }
 
@@ -14,14 +17,16 @@ angular.module("wkndrCr")
 				$scope.signupForm.dob = $scope.signupForm.dob_year + "/" + $scope.signupForm.dob_month + "/" + $scope.signupForm.dob_day;
 
 				// submit form for registration
-				$auth.submitRegistration($scope.signupForm)
-					.then(function(response){
+				Auth.signUp($scope.signupForm, 
+					function(response){ // success callback
 						// handle success on signup submission
 						$scope.signupErrors.errors = false;
 						$scope.signupErrors.messages = [];
 						// clear form and display success
-					})
-					.catch(function(response){
+						$scope.signupForm = {};
+						$scope.signupSuccess = true;
+					}, 
+					function(response){ // error callback
 						// handle errors on signup submission
 						$scope.signupErrors.errors = true;
 						$scope.signupErrors.messages = response.data.errors.full_messages;
