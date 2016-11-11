@@ -1,5 +1,5 @@
 angular.module("wkndrCr")
-	.service("Auth", ["$rootScope", "$state", "$auth", function($rootScope, $state, $auth){
+	.service("Auth", ["$rootScope", "$state", "$window", "$auth", function($rootScope, $state, $window, $auth){
 		// set this for nested calls
 		var self = this;
 
@@ -14,27 +14,23 @@ angular.module("wkndrCr")
 			self.setCurrentUser(user);
 
 			// flag required redirects
-			redirect = (redirect === false ? false : true); // by default redirect to tickets
+			redirect = (redirect === false ? false : true); // by default redirect to logged in splash
 			if (redirect){
-				// kick back to login
-				$state.go("loggedIn.tickets");
+				// navigate to logged in splash
+				$window.location.href = "/me";
 			}
 		};
 
 		// logout
 		self._logout = function(redirect){
-
-
-console.log("gotta leave!")
-
 			// unset current user
 			self.destroyCurrentUser();
 
 			// flag required redirects
 			redirect = (redirect === false ? false : true); // by default redirect back to login
 			if (redirect){
-				// kick back to login
-				$state.go("login");
+				// kick back to splash
+				$window.location.href = "/";
 			}
 		}
 
@@ -73,12 +69,12 @@ console.log("gotta leave!")
 		});
 		// correct token
 		$rootScope.$on("auth:validation-success", function(ev, user){
-			self._login(user, false);
+			self._login(user, false); // do not redirect
 		})
 		// error authentication
 		// incorrect login
 		$rootScope.$on("auth:login-error", function(ev, reason){
-			self._logout(false); // send logout without redirect
+			self._logout(false); // do not redirect
 		});
 		// incorrect token
 		$rootScope.$on("auth:invalid", function(ev, reason){
@@ -94,38 +90,31 @@ console.log("gotta leave!")
 		controller is in charge of sending correct submission data
 		controller is in charge of sending object to keep track of errors
 		*/
-		/* TODO: handle error messages as root scoped flash messages of app */
 		// authorize login
-		// loginData: { email: string, password: string }
-		// errorData: { errors: boolean, messages: [string] }
-		self.logIn = function(loginData, errorData){
+		// loginData: {}
+		// successCallback: function
+		// errorCallback: function
+		self.logIn = function(loginData, successCallback, errorCallback){
 			$auth.submitLogin(loginData)
 				.then(function(response){
-					// clear error messages on succesful login
-					errorData.errors = false;
-					errorData.messages = [];
+					successCallback(response);
 				})
 				.catch(function(response){
-					// display error messages from failed login
-					errorData.errors = true;
-					errorData.messages = response.errors;
+					errorCallback(response);
 				});
 		}
 
 		// authorize signup
-		// signupData: { email: string, username: string, password: string }
-		// errorData: { errors: boolean, message: [string] }
-		self.signUp = function(signupData, errorData){
+		// signupData: {}
+		// successCallback: function
+		// errorCallback: function
+		self.signUp = function(signupData, successCallback, errorCallback){
 			$auth.submitRegistration(signupData)
 				.then(function(response){
-					// clear error messages on succesful signup
-					errorData.errors = false;
-					errorData.messages = [];
+					successCallback(response);
 				})
 				.catch(function(response){
-					// display error messages from failed login
-					errorData.errors = true;
-					errorData.messages = response.data.errors.full_messages;
+					errorCallback(response);
 				});
 		}
 
