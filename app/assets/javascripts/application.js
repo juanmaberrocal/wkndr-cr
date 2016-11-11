@@ -19,3 +19,6 @@
 //
 // Services
 //= require services/auth
+//
+// Layouts
+//= require_tree ../templates/layouts
