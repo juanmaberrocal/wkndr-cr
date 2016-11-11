@@ -1,5 +1,5 @@
 angular.module("wkndrCr")
-	.service("Auth", ["$rootScope", "$state", "$window", "$auth", function($rootScope, $state, $window, $auth){
+	.service("Auth", ["$rootScope", "$state", "$auth", function($rootScope, $state, $auth){
 		// set this for nested calls
 		var self = this;
 
@@ -17,7 +17,7 @@ angular.module("wkndrCr")
 			redirect = (redirect === false ? false : true); // by default redirect to logged in splash
 			if (redirect){
 				// navigate to logged in splash
-				$window.location.href = "/me";
+				$state.go("me.dashboard");
 			}
 		};
 
@@ -30,7 +30,7 @@ angular.module("wkndrCr")
 			redirect = (redirect === false ? false : true); // by default redirect back to login
 			if (redirect){
 				// kick back to splash
-				$window.location.href = "/";
+				$state.go("splash.root");
 			}
 		}
 
@@ -40,7 +40,6 @@ angular.module("wkndrCr")
 		// initialize current user
 		$rootScope.currentUser = {
 			isLoggedIn: false,
-			// isAdmin: false,
 			user: null
 		};
 
@@ -97,10 +96,14 @@ angular.module("wkndrCr")
 		self.logIn = function(loginData, successCallback, errorCallback){
 			$auth.submitLogin(loginData)
 				.then(function(response){
-					successCallback(response);
+					if (jQuery.isFunction(successCallback)){
+						successCallback(response);
+					}
 				})
 				.catch(function(response){
-					errorCallback(response);
+					if (jQuery.isFunction(errorCallback)){
+						errorCallback(response);
+					}
 				});
 		}
 
@@ -111,10 +114,14 @@ angular.module("wkndrCr")
 		self.signUp = function(signupData, successCallback, errorCallback){
 			$auth.submitRegistration(signupData)
 				.then(function(response){
-					successCallback(response);
+					if (jQuery.isFunction(successCallback)){
+						successCallback(response);
+					}
 				})
 				.catch(function(response){
-					errorCallback(response);
+					if (jQuery.isFunction(errorCallback)){
+						errorCallback(response);
+					}
 				});
 		}
 
