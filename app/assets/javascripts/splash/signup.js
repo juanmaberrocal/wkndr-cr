@@ -5,6 +5,9 @@ angular.module("wkndrCr")
 			/*
 			handle singup form
 			*/
+			// show/hide form and success
+			$scope.signupSuccess = false;
+
 			// handle form errors
 			$scope.signupErrors = { errors: false, messages: [] }
 
@@ -20,6 +23,8 @@ angular.module("wkndrCr")
 						$scope.signupErrors.errors = false;
 						$scope.signupErrors.messages = [];
 						// clear form and display success
+						$scope.signupForm = {};
+						$scope.signupSuccess = true;
 					})
 					.catch(function(response){
 						// handle errors on signup submission
