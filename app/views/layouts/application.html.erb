@@ -8,9 +8,11 @@
   <%= csrf_meta_tags %>
   <%= favicon_link_tag '/favicon.ico', type: 'image/x-icon' %>
   <title>wkndr - CR</title>
+  <!--base href="<%= root_url%>"-->
 
   <%= stylesheet_link_tag 'application', media: 'all' %>
-  <%= stylesheet_link_tag 'dashboard', media: 'all' %>
+  <%= stylesheet_link_tag 'splash', media: 'all' %>
+  <%= stylesheet_link_tag 'me', media: 'all' %>
   <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -19,35 +21,12 @@
   <![endif]-->
 
   <%= javascript_include_tag 'application' %>
-  <%= javascript_include_tag 'dashboard' %>
+  <%= javascript_include_tag 'splash' %>
+  <%= javascript_include_tag 'me' %>
 </head>
 <body ng-app="wkndrCr">
 
-  <nav class="navbar navbar-default">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <a class="navbar-brand" href="#">
-          <%= image_tag 'logo.png' %>
-        </a>
-      </div>
-      <div id="navbar" class="navbar-default">
-        <ul class="nav navbar-nav">
-          <li><a href="#/dashboard" class="active">
-            <span class="glyphicon glyphicon-dashboard"></span>Dashboard
-          </a></li>
-        </ul>
-
-        <!-- profile -->
-        <ul class="nav navbar-nav">
-          
-        </ul>
-      </div><!--/.navbar-default -->
-    </div>
-  </nav>
-
-  <div class="container-fluid">
-    <ui-view><!-- view rendered here --></ui-view>
-  </div>
+  <ui-view><!-- view rendered here --></ui-view>
 
 </body>
 </html>

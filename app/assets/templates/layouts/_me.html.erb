@@ -1,0 +1,27 @@
+<div id="me-root">
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">
+          <%= image_tag 'logo.png' %>
+        </a>
+      </div>
+      <div id="navbar" class="navbar-default">
+        <ul class="nav navbar-nav">
+          <li><a href="#/dashboard" class="active">
+            <span class="glyphicon glyphicon-dashboard"></span>Dashboard
+          </a></li>
+        </ul>
+
+        <!-- profile -->
+        <ul class="nav navbar-nav">
+          
+        </ul>
+      </div><!--/.navbar-default -->
+    </div>
+  </nav>
+
+  <div class="container-fluid">
+    <ui-view><!-- view rendered here --></ui-view>
+  </div>
+</div>

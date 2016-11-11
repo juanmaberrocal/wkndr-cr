@@ -9,7 +9,7 @@ angular.module("wkndrCr", ["ui.router", "ng-token-auth", "templates"])
         // define authentication API
         $authProvider
           .configure({ // todo: set proper URLs for environments
-            apiUrl: "http://localhost:3000",
+            apiUrl: "",
             confirmationSuccessUrl: "http://localhost:3000#/login" // redirect to login after confirmation
           });
 
@@ -17,17 +17,21 @@ angular.module("wkndrCr", ["ui.router", "ng-token-auth", "templates"])
   	  	$stateProvider
           // splash states
           // no authentication required
-  	  	  .state("root", { // home
+          .state("splash", {
+            abstract: true,
+            templateUrl: "layouts/_splash.html" // wrapper for splash views
+          })
+  	  	  .state("splash.root", { // home
   	  	  	url: "/",
   	  	  	templateUrl: "splash/_index.html",
   	  	  	controller: "wkndrSplash"
   	  	  })
-          .state("login", { // login
+          .state("splash.login", { // login
             url: "/login",
             templateUrl: "splash/_login.html",
             controller: "wkndrLogin"
           })
-          .state("signup", { // signup
+          .state("splash.signup", { // signup
             url: "/signup",
             templateUrl: "splash/_signup.html",
             controller: "wkndrSignup"
@@ -36,22 +40,21 @@ angular.module("wkndrCr", ["ui.router", "ng-token-auth", "templates"])
           // authentication required
           .state("me", {
             abstract: true,
-            template: "<ui-view/>", // wrapper for child authenticated views
+            templateUrl: "layouts/_me.html", // wrapper for child authenticated views
             resolve: {
               auth: function($auth){
-                console.log("gotta check!")
                 return $auth.validateUser();
               }
             }
           })
           .state("me.dashboard", { // dashboard
-            url: "/dashboard",
-            templateUrl: "dashboard/_index",
+            url: "/me/dashboard",
+            templateUrl: "me/_index.html",
             controller: "wkndrDashboard"
           })
           .state("me.profile", {
-            url: "/profile",
-            templateUrl: "dashboard/_profile",
+            url: "/me/profile",
+            templateUrl: "me/_profile.html",
             controller: "wkndrProfile"
           })
           ;
