@@ -4,6 +4,10 @@ class Event < ActiveRecord::Base
   belongs_to :user
   # belongs_to :location
 
+  # has_many
+  has_many :event_users, dependent: :destroy
+  has_many :users, through: :event_users
+
   # validations
   validates :user, presence: true
 end

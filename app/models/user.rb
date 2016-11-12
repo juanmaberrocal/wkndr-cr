@@ -9,7 +9,11 @@ class User < ActiveRecord::Base
   # has_many
   has_many :user_friends
   has_many :friends, through: :user_friends
+  
   has_many :events
+
+  has_many :event_users
+  has_many :invited_events, through: :event_users
 
   # validations
   validates :username, presence: true

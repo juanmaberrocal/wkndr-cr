@@ -64,6 +64,13 @@ RSpec.describe User, type: :model do
 				expect(event.class).to eq(Event)
 			end
 		end
+
+		# it 'has_many Invited Events as Events' do
+		# 	# create event with users once
+		# 	event = create(:event_with_users)
+
+		# 	# ensure association returns expected # of records
+		# end
 	end
 
 end
