@@ -27,7 +27,7 @@ RSpec.describe Event, type: :model do
 
 		it 'belongs_to Location' do
 			# associated :location must be Location class
-			# expect(build(:event).location.class).to eq(Location)
+			expect(build(:event).location.class).to eq(Location)
 		end
 
 		it 'has_many Users' do

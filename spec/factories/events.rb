@@ -2,7 +2,7 @@ FactoryGirl.define do
   
   factory :event do
     user
-    # location nil
+    location
     title 'Test Event'
     description 'This is a test event created by FactoryGirl'
     start_date Date.today

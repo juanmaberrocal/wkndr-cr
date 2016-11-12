@@ -2,7 +2,7 @@ class Event < ActiveRecord::Base
 	# relations
 	# belongs_to
   belongs_to :user
-  # belongs_to :location
+  belongs_to :location
 
   # has_many
   has_many :event_users, dependent: :destroy
