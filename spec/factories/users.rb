@@ -14,6 +14,16 @@ FactoryGirl.define  do
 				create_list(:user_friend, evaluator.friend_count, user: user)
 			end
 		end
+
+		factory :user_with_events do
+			transient do
+				event_count 5
+			end
+
+			after(:create) do |user, evaluator|
+				create_list(:event, evaluator.event_count, user: user)
+			end
+		end
 	end
 	
 end

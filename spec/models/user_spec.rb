@@ -51,6 +51,19 @@ RSpec.describe User, type: :model do
 				expect(user.friends[i].class).to eq(User)
 			end
 		end
+
+		it 'has_many Events' do
+			# create user with events once
+			user = create(:user_with_events)
+
+			# ensure association returns expected # of records
+			expect(user.events.length).to eq(5)
+
+			# ensure association returns Event record
+			user.events.each do |event|
+				expect(event.class).to eq(Event)
+			end
+		end
 	end
 
 end
