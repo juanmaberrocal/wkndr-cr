@@ -12,7 +12,7 @@ div#splash-root {
 		}
 	}
 
-	> div.container-fluid {
+	> ui-view > div.container-fluid {
 		margin-top: 51px; // 1px for border
 		padding-top: 15px; // match left-right padding
 	}

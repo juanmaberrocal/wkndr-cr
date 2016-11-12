@@ -1,18 +1,10 @@
-body {
+div#splash-root {
 	div.jumbotron {
-		// resize jumbotron to fill
-		margin-top: -15px;
-	    padding-top: 111px;
-	    width: 103%;
-	    // fill top with jumbotron
-	    position: relative;
-	    top: -51px;
-	    left: -15px;
-	    right: -15px;
-	    border-radius: 0 !important;
+	  padding-top: 111px;
+	  border-radius: 0 !important;
 
-	    // handle bg transitions
-	    -webkit-transition: background-image 0.5s ease-in-out;
+	  // handle bg transitions
+	  -webkit-transition: background-image 0.5s ease-in-out;
 		transition: background-image 0.5s ease-in-out;
 
 		div.container {
