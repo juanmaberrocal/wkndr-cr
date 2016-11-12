@@ -71,6 +71,19 @@ RSpec.describe User, type: :model do
 
 		# 	# ensure association returns expected # of records
 		# end
+
+		it 'has_many Comments' do
+			# create user with comments once
+			user = create(:user_with_comments)
+
+			# ensure association returns expected # of records
+			expect(user.comments.length).to eq(5)
+
+			# ensure association returns Comement record
+			user.comments.each do |comment|
+				expect(comment.class).to eq(Comment)
+			end
+		end
 	end
 
 end

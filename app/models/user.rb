@@ -15,6 +15,8 @@ class User < ActiveRecord::Base
   has_many :event_users
   has_many :invited_events, through: :event_users
 
+  has_many :comments
+
   # validations
   validates :username, presence: true
 end

@@ -21,6 +21,16 @@ FactoryGirl.define do
 				end
 			end
     end
+
+    factory :event_with_comments do
+    	transient do
+    		comments_count 5
+    	end
+
+    	after(:create) do |event, evaluator|
+    		create_list(:comment, evaluator.comments_count, event: event)
+    	end
+    end
   end
 
 end

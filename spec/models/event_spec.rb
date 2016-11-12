@@ -16,11 +16,6 @@ RSpec.describe Event, type: :model do
 			# requires user association
 			expect(build(:event, user: nil)).to_not be_valid
 		end
-
-		it 'Presence Location' do
-			# requires location association
-			# expect(build(:event, location: nil)).to_not be_valid
-		end
 	end
 
 	# relations
@@ -36,7 +31,7 @@ RSpec.describe Event, type: :model do
 		end
 
 		it 'has_many Users' do
-			# create user with friends once
+			# create event with users once
 			event = create(:event_with_users)
 
 			# ensure association returns expected # of records for has_many & through
@@ -48,6 +43,19 @@ RSpec.describe Event, type: :model do
 			event.event_users.each_with_index do |event_user, i|
 				expect(event_user.user).to eq(event.users[i])
 				expect(event.users[i].class).to eq(User)
+			end
+		end
+
+		it 'has_many Comments' do
+			# create event with comments once
+			event = create(:event_with_comments)
+
+			# ensure association returns expected # of records
+			expect(event.comments.length).to eq(5)
+
+			# ensure association returns Comement record
+			event.comments.each do |comment|
+				expect(comment.class).to eq(Comment)
 			end
 		end
 	end
