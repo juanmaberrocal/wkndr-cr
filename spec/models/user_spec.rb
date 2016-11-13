@@ -52,15 +52,15 @@ RSpec.describe User, type: :model do
 			end
 		end
 
-		it 'has_many Events' do
+		it 'has_many Owner Events' do
 			# create user with events once
 			user = create(:user_with_events)
 
 			# ensure association returns expected # of records
-			expect(user.events.length).to eq(5)
+			expect(user.owner_events.length).to eq(5)
 
 			# ensure association returns Event record
-			user.events.each do |event|
+			user.owner_events.each do |event|
 				expect(event.class).to eq(Event)
 			end
 		end

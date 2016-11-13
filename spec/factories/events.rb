@@ -1,7 +1,7 @@
 FactoryGirl.define do
   
   factory :event do
-    user
+    association :owner_user, factory: :user 
     location
     title 'Test Event'
     description 'This is a test event created by FactoryGirl'

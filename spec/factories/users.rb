@@ -21,7 +21,7 @@ FactoryGirl.define  do
 			end
 
 			after(:create) do |user, evaluator|
-				create_list(:event, evaluator.event_count, user: user)
+				create_list(:event, evaluator.event_count, owner_user: user)
 			end
 		end
 
