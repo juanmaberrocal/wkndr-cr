@@ -1,10 +1,6 @@
 // import components
 @import "components/color_palette"; // color palette
 
-body {
-  background-color: $grayblue-lightest;
-}
-
 div#me-root {
   > nav.navbar {
     position: fixed;

@@ -10,20 +10,20 @@ div#splash-root {
 				}
 			}
 		}
+
+		div#navbar {
+			ul.nav.navbar-nav {
+				li {
+					a {
+						font-weight: bold;
+					}
+				}
+			}
+		}
 	}
 
 	> ui-view > div.container-fluid {
 		margin-top: 51px; // 1px for border
 		padding-top: 15px; // match left-right padding
-	}
-}
-
-/*
-handle backgrounds
-used by splash jumbo and signup body
-*/
-@for $i from 1 through 3 {
-	.wkndr-bg-#{$i} {
-		background-image: image-url('wkndr-bg-#{$i}.jpg');
 	}
 }

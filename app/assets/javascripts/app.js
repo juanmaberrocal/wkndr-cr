@@ -9,8 +9,7 @@ angular.module("wkndrCr", ["ui.router", "ng-token-auth", "templates"])
         // define authentication API
         $authProvider
           .configure({ // todo: set proper URLs for environments
-            apiUrl: "",
-            confirmationSuccessUrl: "http://localhost:3000#/login" // redirect to login after confirmation
+            apiUrl: ""
           });
 
   	  	// define states

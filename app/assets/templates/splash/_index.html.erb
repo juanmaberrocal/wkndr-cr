@@ -1,29 +1,81 @@
 <!-- Main jumbotron for a primary marketing message or call to action -->
 <div class="jumbotron">
-  <div class="container">
-    <h1>Hello, world!</h1>
-    <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
-    <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
+  <div class="container collapsed">
+    <!-- expander -->
+    <div class="expander btn btn-default" ng-click="expandCollapseJumbo($event)">
+      <span class="glyphicon glyphicon-chevron-right"></span>
+    </div>
+
+    <!-- text display -->
+    <h1><span>week</span>&#183;<span>end</span>&#183;<span>er</span></h1>
+    <p>/w&#275;kend&#601;r/</p>
+    <p><em>noun</em></p>
+    <ol>
+      <li>Definition goes here</li>
+    </ol>
   </div>
 </div>
 
-<div class="container">
-  <!-- Example row of columns -->
-  <div class="row">
-    <div class="col-md-4">
-      <h2>Heading</h2>
-      <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-      <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+<div class="container-fluid">
+  
+  <!-- about -->
+  <div id="about" class="row">
+    <div class="col-md-10 col-md-offset-2">
+      <h2>What is wkndr?</h2>
+      <p>wkndr is a social media application focused on connecting people with an interest for the outdoors. wkndr provides a place where friends can gather, plan, and share their experiences.</p>
+      <p>...</p> <!-- todo -->
+    </div>
+  </div>
+
+  <!-- explain -->
+  <div id="explain" class="row">
+    <div id="explain-img" class="col-md-8 hidden-xs hidden-sm">
+      <%= image_tag 'splash_explain.png' %>
     </div>
     <div class="col-md-4">
-      <h2>Heading</h2>
-      <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-      <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+      <h2>Plan. Explore. Share.</h2>
+      <p>Get your friends together, pick a location, set a date, and get ready for weekender!</p>
+      <p>Find new locations, activities, and friends to expand your wkndr circle</p>
+      <p>Share your experiences ...</p>
+      <p>...</p> <!-- todo -->
     </div>
-    <div class="col-md-4">
-      <h2>Heading</h2>
-        <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-        <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+  </div>
+
+  <!-- responsive -->
+  <div id="responsive" class="row">
+    <div class="col-md-12">
+      <h2>Always Available</h2>
+      <p>wkndr's responsive layout allows you to keep track of your events from any device available, in your home or on the go</p>
+      <p>...</p> <!-- todo -->
+    </div>
+  </div>
+
+  <!-- social media -->
+  <div id="social" class="row">
+    <div class="col-md-8">
+      <h2>Follow Us!</h2>
+      <p>Find us on social media and find out what new adventures are out there!</p>
+      <p>...</p>
+    </div>
+    <div class="col-md-4 hidden-xs hidden-sm"></div>
+  </div>
+
+</div>
+
+<!-- footer -->
+<footer>
+  <div class="container">
+
+    <div class="row">
+      <div class="col-xs-12">
+        <h2><span>wkndr</span> <small>Costa Rica</small></h2>
       </div>
     </div>
-</div> <!-- /container -->
+    <div class="row">
+      <div class="col-xs-12">
+        <a>About</a>
+        <a>Legal</a>
+      </div>
+    </div>
+  </div>
+</footer>

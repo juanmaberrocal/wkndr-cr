@@ -1,4 +1,7 @@
 body {
+  background-color: $grayblue-lightest;
+  @include background-transition();
+
 	nav.navbar {
 		@include background-opacity($antiflashwhite, 0.8);
 		border-color: $grayblue !important;
@@ -24,4 +27,31 @@ body {
 			}
 		}
 	}
+}
+
+/*
+handle backgrounds
+used by splash jumbo and signup body
+*/
+@for $i from 1 through 3 {
+	.wkndr-bg-#{$i} {
+		background-image: image-url('wkndr-bg-#{$i}.jpg');
+	}
+}
+
+/*
+handle fonts
+*/
+@font-face {
+  font-family: 'Out_of_Tune';
+  src: font-url('out_of_tune.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Candy';
+  src: font-url('CANDY__.otf');
+  font-weight: normal;
+  font-style: normal;
 }
