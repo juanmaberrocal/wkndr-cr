@@ -127,7 +127,6 @@ angular.module("wkndrCr")
 
 		/*
 		handle user logouts
-		(user logouts happen through root)
 		*/
 		// event handling
 		$rootScope.$on("auth:logout-success", function(ev){
@@ -142,7 +141,8 @@ angular.module("wkndrCr")
 		});
 
 		// user logout
-		$rootScope.logOut = function(){
+		self.logOut = function(){
 			$auth.signOut();
 		}
+
 	}]);

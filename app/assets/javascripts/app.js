@@ -52,7 +52,17 @@ angular.module("wkndrCr", ["ui.router", "ng-token-auth", "templates"])
             templateUrl: "me/_index.html",
             controller: "wkndrDashboard"
           })
-          .state("me.profile", {
+          .state("me.events", { // events
+            url: "/me/events",
+            templateUrl: "me/_events.html",
+            controller: "wkndrEvents"
+          })
+          .state("me.explore", { // explore
+            url: "/me/explore",
+            templateUrl: "me/_explore.html",
+            controller: "wkndrExplore"
+          })
+          .state("me.profile", { // profile
             url: "/me/profile",
             templateUrl: "me/_profile.html",
             controller: "wkndrProfile"
@@ -68,6 +78,5 @@ angular.module("wkndrCr", ["ui.router", "ng-token-auth", "templates"])
         // }
   	  }
   	])
-  .run(["Auth", function(Auth){
-
+  .run(["currRoute", "Auth", function(currRoute, Auth){
   }])
