@@ -1,0 +1,24 @@
+div#me-root {
+	div.profile {
+		float: none;
+		margin: auto;
+		margin-top: 2%;
+
+		div.profile-header {
+			text-align: center;
+
+			span.glyphicon {
+				font-size: 5em;
+			}
+		}
+
+		div.profile-footer {
+			text-align: center;
+
+			div[class^="col-"] {
+				float: none;
+				margin: auto;
+			}
+		}		
+	}
+}

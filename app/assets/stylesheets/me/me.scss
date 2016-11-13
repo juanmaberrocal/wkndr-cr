@@ -1,3 +1,10 @@
+// import components
+@import "components/color_palette"; // color palette
+
+body {
+  background-color: $grayblue-lightest;
+}
+
 div#me-root {
   > nav.navbar {
     position: fixed;
@@ -8,12 +15,15 @@ div#me-root {
     width: 100px;
     border: 0;
     border-right: 1px solid;
+    box-shadow: 3px 0 10px 0 $grayblue;
     border-radius: 0;
     overflow-x: hidden;
     overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
 
     div.container-fluid {
       padding: 0;
+      height: 100%;
+      position: relative;
 
       div.navbar-header {
         margin: 0;
@@ -43,7 +53,7 @@ div#me-root {
 
           li {
             width: 100%;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
 
             a {
               box-sizing: border-box;
@@ -51,11 +61,21 @@ div#me-root {
               padding: 3px;
               border-left-width: 3px;
               text-align: center;
+              text-overflow: ellipsis;
+              overflow: hidden;
 
               span.glyphicon {
+                width: 100%;
                 font-size: 2em;
               }
             }
+          }
+
+          &:last-of-type {
+            padding-top: 15px;
+            border-top: 1px solid $grayblue;
+            position: absolute;
+            bottom: 0;
           }
         }
       }
@@ -64,5 +84,9 @@ div#me-root {
 
   > div.container-fluid {
     padding-left: 115px;
+
+    div.page-header {
+      border-bottom-color: $grayblue;
+    }
   }
 }

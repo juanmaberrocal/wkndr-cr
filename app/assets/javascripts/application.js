@@ -19,6 +19,7 @@
 //
 // Services
 //= require services/auth
+//= require services/currRoute
 //
 // Layouts
 //= require_tree ../templates/layouts
