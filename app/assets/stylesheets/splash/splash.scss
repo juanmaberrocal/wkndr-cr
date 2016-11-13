@@ -17,13 +17,3 @@ div#splash-root {
 		padding-top: 15px; // match left-right padding
 	}
 }
-
-/*
-handle backgrounds
-used by splash jumbo and signup body
-*/
-@for $i from 1 through 3 {
-	.wkndr-bg-#{$i} {
-		background-image: image-url('wkndr-bg-#{$i}.jpg');
-	}
-}
