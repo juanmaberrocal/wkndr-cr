@@ -24,6 +24,18 @@ DeviseTokenAuth.setup do |config|
   # redirect successful authentications to '/omniauth/github/callback'
   # config.omniauth_prefix = "/omniauth"
 
+  # By default this value is expected to be sent by the client so that the 
+  # API knows where to redirect users after successful email confirmation. 
+  # If this param is set, the API will redirect to this value when no value 
+  # is provided by the client.
+  config.default_confirm_success_url = case Rails.env
+                                        when 'production'
+                                          # "#{Socket.gethostname}#/login"
+                                          "#{ENV["HOST_URL"]}/#login"
+                                        else
+                                          'localhost:3000/#login'
+                                        end
+
   # By default sending current password is not needed for the password update.
   # Uncomment to enforce current_password param to be checked before all
   # attribute updates. Set it to :password if you want it to be checked only if
