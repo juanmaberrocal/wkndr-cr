@@ -35,6 +35,34 @@ angular.module("wkndrCr", ["ui.router", "ng-token-auth", "templates"])
             templateUrl: "splash/_signup.html",
             controller: "wkndrSignup"
           })
+          // info states
+          .state("info", {
+            abstract: true,
+            templateUrl: "layouts/_info.html"
+          })
+          .state("info.about", { // about
+            url: "/about",
+            templateUrl: "info/_about",
+            controller: "wkndrAbout"
+          })
+          // info - legal states
+          .state("info.legal", {
+            url: "/legal",
+            templateUrl: "layouts/_legal.html",
+            resolve: {
+              currRoute: function(currRoute){
+                return currRoute.getCurrState()
+              }
+            }
+          })
+          .state("info.legal.terms", { // terms and conditions
+            url: "/terms",
+            templateUrl: "info/legal/_terms_conditions.html"
+          })
+          .state("info.legal.privacy", { // privacy policy
+            url: "/privacy",
+            templateUrl: "info/legal/_privacy_policy.html"
+          })
           // dashboard states
           // authentication required
           .state("me", {

@@ -1,0 +1,31 @@
+div#info-root {
+	background: #FFF;
+
+	> nav.navbar {
+		border-top: 0;
+		border-left: 0;
+		border-right: 0;
+		border-radius: 0;
+
+		div.navbar-header {
+			a.navbar-brand {
+				padding: 0;
+
+				img {
+					height: 100%;
+					width: auto;
+				}
+			}
+		}
+
+		div#navbar {
+			ul.nav.navbar-nav {
+				li {
+					a {
+						font-weight: bold;
+					}
+				}
+			}
+		}
+	}
+}

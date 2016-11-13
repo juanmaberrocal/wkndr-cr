@@ -8,7 +8,7 @@ angular.module("wkndrCr")
 		*/
 		// keep track of states and params
 		$rootScope.$on("$stateChangeSuccess", function(ev, curr, params){
-			var rootRegex = /^\/me\/\w+/,
+			var rootRegex = /^\/(?:me|legal)\/\w+/,
 				actionRegex = /\/\w+$/;
 
 			$rootScope.currState = {
