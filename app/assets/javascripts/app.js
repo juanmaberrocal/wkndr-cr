@@ -1,4 +1,12 @@
-angular.module("wkndrCr", ["ui.router", "ng-token-auth", "templates"])
+angular.module("wkndrCr", [
+    "ngAnimate", 
+    "ngTouch", 
+    "ui.router", 
+    "ui.bootstrap", 
+    "lr.upload", 
+    "ng-token-auth", 
+    "templates"
+  ])
   // define routes
   .config([
   	  "$stateProvider",

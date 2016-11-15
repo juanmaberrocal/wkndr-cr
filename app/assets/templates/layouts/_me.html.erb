@@ -22,7 +22,8 @@
         <!-- profile -->
         <ul class="nav navbar-nav">
           <li><a href="#/me/profile">
-            <span class="glyphicon glyphicon-user"></span>{{ currentUser.user.username }}
+            <div><img ng-src="{{currentUser.user.avatar.thumb.url}}" alt="" class="img-circle" /></div>
+            {{ currentUser.user.username }}
           </a></li>
         </ul>
       </div><!--/.navbar-default -->

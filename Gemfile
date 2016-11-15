@@ -31,6 +31,12 @@ gem 'angular_rails_csrf'
 # Use AngularJS templates from assets
 gem 'angular-rails-templates'
 
+# Use CarrierWave and MiniMagick for image uploads
+# Use fog for AWS storage
+gem 'carrierwave', '>= 1.0.0.rc', '< 2.0'
+gem 'mini_magick'
+gem 'fog', require: 'fog/aws'
+
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
 
@@ -39,6 +45,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+
+# Use Figaro for env var storage
+gem 'figaro'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

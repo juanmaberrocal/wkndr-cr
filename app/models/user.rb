@@ -1,4 +1,7 @@
 class User < ActiveRecord::Base
+  # mount avatar uploader
+  mount_uploader :avatar, AvatarUploader
+
   # Include default devise modules.
   devise :database_authenticatable, :registerable,
           :recoverable, :rememberable, :trackable, :validatable,
@@ -25,4 +28,8 @@ class User < ActiveRecord::Base
 
   # validations
   validates :username, presence: true
+
+  # avatar uploader validations
+  validates_integrity_of :avatar
+  validates_processing_of :avatar
 end

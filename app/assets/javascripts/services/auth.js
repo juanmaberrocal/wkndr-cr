@@ -43,8 +43,13 @@ angular.module("wkndrCr")
 			user: null
 		};
 
+		self.getCurrentUser = function(){
+			return $rootScope.currentUser;
+		}
+
 		// set current user from data auth user data
 		self.setCurrentUser = function(userData){
+			console.log(userData)
 			$rootScope.currentUser.isLoggedIn = userData.signedIn;
 			// $rootScope.currentUser.isAdmin = userData.admin;
 			$rootScope.currentUser.user = userData;
