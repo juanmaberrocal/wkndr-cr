@@ -17,7 +17,11 @@ angular.module("wkndrCr", [
         // define authentication API
         $authProvider
           .configure({ // todo: set proper URLs for environments
-            apiUrl: ""
+            apiUrl: "",
+            omniauthWindowType: "sameWindow",
+            authProviderPaths: {
+              facebook: "/auth/facebook"
+            }
           });
 
   	  	// define states

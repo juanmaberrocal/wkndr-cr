@@ -49,7 +49,6 @@ angular.module("wkndrCr")
 
 		// set current user from data auth user data
 		self.setCurrentUser = function(userData){
-			console.log(userData)
 			$rootScope.currentUser.isLoggedIn = userData.signedIn;
 			// $rootScope.currentUser.isAdmin = userData.admin;
 			$rootScope.currentUser.user = userData;
@@ -128,6 +127,13 @@ angular.module("wkndrCr")
 						errorCallback(response);
 					}
 				});
+		}
+
+		// authorize facebook
+		// success and error handling done through callback controllers
+		// overrides/omniauth_callbacks_controller
+		self.facebook = function(){
+			$auth.authenticate("facebook");
 		}
 
 		/*
