@@ -30,7 +30,7 @@ angular.module("wkndrCr", [
           // no authentication required
           .state("splash", {
             abstract: true,
-            templateUrl: "layouts/_splash.html", // wrapper for splash views
+            templateUrl: "layouts/_splash.html" // wrapper for splash views
           })
   	  	  .state("splash.root", { // home
   	  	  	url: "/",

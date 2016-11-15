@@ -73,7 +73,7 @@ angular.module("wkndrCr")
 		// oauth registration
 		$rootScope.$on("auth:auth:oauth-registration", function(ev, user){
 			self._login(user);
-		})
+		});
 		// correct token
 		$rootScope.$on("auth:validation-success", function(ev, user){
 			self._login(user, false); // do not redirect
