@@ -70,10 +70,14 @@ angular.module("wkndrCr")
 		$rootScope.$on("auth:login-success", function(ev, user){
 			self._login(user);
 		});
+		// oauth registration
+		$rootScope.$on("auth:auth:oauth-registration", function(ev, user){
+			self._login(user);
+		})
 		// correct token
 		$rootScope.$on("auth:validation-success", function(ev, user){
 			self._login(user, false); // do not redirect
-		})
+		});
 		// error authentication
 		// incorrect login
 		$rootScope.$on("auth:login-error", function(ev, reason){

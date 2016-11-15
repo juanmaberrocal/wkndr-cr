@@ -18,7 +18,7 @@ angular.module("wkndrCr", [
         $authProvider
           .configure({ // todo: set proper URLs for environments
             apiUrl: "",
-            omniauthWindowType: "sameWindow",
+            omniauthWindowType: "newWindow",
             authProviderPaths: {
               facebook: "/auth/facebook"
             }
@@ -30,7 +30,7 @@ angular.module("wkndrCr", [
           // no authentication required
           .state("splash", {
             abstract: true,
-            templateUrl: "layouts/_splash.html" // wrapper for splash views
+            templateUrl: "layouts/_splash.html", // wrapper for splash views
           })
   	  	  .state("splash.root", { // home
   	  	  	url: "/",
@@ -48,9 +48,10 @@ angular.module("wkndrCr", [
             controller: "wkndrSignup"
           })
           // info states
+          // no authentication required
           .state("info", {
             abstract: true,
-            templateUrl: "layouts/_info.html"
+            templateUrl: "layouts/_info.html" // wrapper for info views
           })
           .state("info.about", { // about
             url: "/about",
@@ -60,7 +61,7 @@ angular.module("wkndrCr", [
           // info - legal states
           .state("info.legal", {
             url: "/legal",
-            templateUrl: "layouts/_legal.html",
+            templateUrl: "layouts/_legal.html", // wrapper for legal views
             resolve: {
               currRoute: function(currRoute){
                 return currRoute.getCurrState()
