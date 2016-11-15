@@ -49,7 +49,6 @@ angular.module("wkndrCr")
 
 		// set current user from data auth user data
 		self.setCurrentUser = function(userData){
-			console.log(userData)
 			$rootScope.currentUser.isLoggedIn = userData.signedIn;
 			// $rootScope.currentUser.isAdmin = userData.admin;
 			$rootScope.currentUser.user = userData;
@@ -71,10 +70,14 @@ angular.module("wkndrCr")
 		$rootScope.$on("auth:login-success", function(ev, user){
 			self._login(user);
 		});
+		// oauth registration
+		$rootScope.$on("auth:auth:oauth-registration", function(ev, user){
+			self._login(user);
+		});
 		// correct token
 		$rootScope.$on("auth:validation-success", function(ev, user){
 			self._login(user, false); // do not redirect
-		})
+		});
 		// error authentication
 		// incorrect login
 		$rootScope.$on("auth:login-error", function(ev, reason){
@@ -128,6 +131,13 @@ angular.module("wkndrCr")
 						errorCallback(response);
 					}
 				});
+		}
+
+		// authorize facebook
+		// success and error handling done through callback controllers
+		// overrides/omniauth_callbacks_controller
+		self.facebook = function(){
+			$auth.authenticate("facebook");
 		}
 
 		/*

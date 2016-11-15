@@ -17,7 +17,11 @@ angular.module("wkndrCr", [
         // define authentication API
         $authProvider
           .configure({ // todo: set proper URLs for environments
-            apiUrl: ""
+            apiUrl: "",
+            omniauthWindowType: "newWindow",
+            authProviderPaths: {
+              facebook: "/auth/facebook"
+            }
           });
 
   	  	// define states
@@ -44,9 +48,10 @@ angular.module("wkndrCr", [
             controller: "wkndrSignup"
           })
           // info states
+          // no authentication required
           .state("info", {
             abstract: true,
-            templateUrl: "layouts/_info.html"
+            templateUrl: "layouts/_info.html" // wrapper for info views
           })
           .state("info.about", { // about
             url: "/about",
@@ -56,7 +61,7 @@ angular.module("wkndrCr", [
           // info - legal states
           .state("info.legal", {
             url: "/legal",
-            templateUrl: "layouts/_legal.html",
+            templateUrl: "layouts/_legal.html", // wrapper for legal views
             resolve: {
               currRoute: function(currRoute){
                 return currRoute.getCurrState()

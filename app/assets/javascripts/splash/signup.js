@@ -11,6 +11,11 @@ angular.module("wkndrCr")
 			// handle form errors
 			$scope.signupErrors = { errors: false, messages: [] }
 
+			// handle facebook signup
+			$scope.facebookSignup = function(){
+				Auth.facebook();
+			}
+
 			// handle signup form submission
 			$scope.signupSubmit = function(){
 				// build dob as yyyy/mm/dd

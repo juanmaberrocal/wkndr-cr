@@ -19,7 +19,7 @@
       <!-- signup container -->
       <div id="signup-form-container" ng-hide="signupSuccess">
         <!-- signup facebook -->
-        <button class="btn btn-default btn-block text-uppercase" disabled="true">Sign Up with Facebook</button>
+        <button class="btn btn-default btn-block btn-primary text-uppercase" ng-click="facebookSignup()">Sign Up with Facebook</button>
 
         <!-- spacer -->
         <div id="signup-spacer" class="text-uppercase">or</div>
@@ -127,7 +127,7 @@
           <span class="help-block">By clicking on Sign Up, you agree to the <a href="#/legal/terms">terms & conditions</a> and <a href="#/legal/privacy">privacy policy</a></span>
 
           <!-- submit -->
-          <input type="submit" id="signup" name="signup" value="Sign Up" class="btn btn-primary btn-block text-uppercase" ng-disabled="signup_form.$invalid" />
+          <input type="submit" id="signup" name="signup" value="Sign Up" class="btn btn-success btn-block text-uppercase" ng-disabled="signup_form.$invalid" />
         </form>
       </div>
 

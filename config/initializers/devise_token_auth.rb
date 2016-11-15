@@ -28,13 +28,7 @@ DeviseTokenAuth.setup do |config|
   # API knows where to redirect users after successful email confirmation. 
   # If this param is set, the API will redirect to this value when no value 
   # is provided by the client.
-  config.default_confirm_success_url = case Rails.env
-                                        when 'production'
-                                          # "#{Socket.gethostname}#/login"
-                                          "#{ENV["HOST_URL"]}/#login"
-                                        else
-                                          'localhost:3000/#login'
-                                        end
+  config.default_confirm_success_url = "#{ENV["HOST_URL"]}/#login"
 
   # By default sending current password is not needed for the password update.
   # Uncomment to enforce current_password param to be checked before all
