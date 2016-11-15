@@ -8,6 +8,11 @@ angular.module("wkndrCr")
 			// handle form errors
 			$scope.loginErrors = { errors: false, messages: [] }
 
+			// handle facebook login
+			$scope.facebookLogin = function(){
+				Auth.facebook();
+			}
+
 			// handle login form submission
 			$scope.loginSubmit = function(){
 				// submit form for registration
