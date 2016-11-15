@@ -13,14 +13,17 @@
 //= require angular-animate
 //= require angular-touch
 //
+// Authentication
+//= require ng-token-auth
+//
 // Angular-Bootstrap
 //= require angular-bootstrap/ui-bootstrap-tpls
 //
 // Angular Uploader (required for images)
 //= require angular-upload
 //
-// Authentication
-//= require ng-token-auth
+// Angular-GMaps
+//= require ngmap/build/scripts/ng-map
 //
 // App
 //= require app
