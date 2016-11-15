@@ -4,3 +4,6 @@
 //
 // Directives
 //= require directives/fileUploadChange
+//
+// Resources
+//= require_tree ./resources
