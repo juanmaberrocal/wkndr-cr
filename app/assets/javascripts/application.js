@@ -10,6 +10,14 @@
 //= require angular-cookie
 //= require angular-ui-router
 //= require angular-rails-templates
+//= require angular-animate
+//= require angular-touch
+//
+// Angular-Bootstrap
+//= require angular-bootstrap/ui-bootstrap-tpls
+//
+// Angular Uploader (required for images)
+//= require angular-upload
 //
 // Authentication
 //= require ng-token-auth
