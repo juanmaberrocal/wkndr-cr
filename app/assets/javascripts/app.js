@@ -2,6 +2,7 @@ angular.module("wkndrCr", [
     "ngAnimate", 
     "ngTouch", 
     "ui.router", 
+    "ngResource",
     "ui.bootstrap", 
     "lr.upload", 
     "ngMap",

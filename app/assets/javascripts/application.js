@@ -7,6 +7,7 @@
 //
 // Angular
 //= require angular
+//= require angular-resource
 //= require angular-cookie
 //= require angular-ui-router
 //= require angular-rails-templates
