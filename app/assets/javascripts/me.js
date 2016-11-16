@@ -3,6 +3,7 @@
 //= require_tree ../templates/me
 //
 // Directives
+//= require directives/locationCard
 //= require directives/fileUploadChange
 //
 // Resources

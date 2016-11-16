@@ -1,0 +1,10 @@
+<h6 class="location-title">
+	{{ location.name }}
+</h6>
+<div class="location-body">
+	{{ location.description }}
+</div>
+<div class="location-footer">
+	<div id="urlFacebook" class="social-icon" ng-class="{ inactive: !location.url_facebook }">F</div>
+	<div id="urlWebsite" class="social-icon" ng-class="{ inactive: !location.url_website }">W</div>
+</div>
