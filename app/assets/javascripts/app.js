@@ -18,6 +18,7 @@ angular.module("wkndrCr", [
         $authProvider
           .configure({ // todo: set proper URLs for environments
             apiUrl: "",
+            confirmationSuccessUrl: null,
             omniauthWindowType: "newWindow",
             authProviderPaths: {
               facebook: "/auth/facebook"

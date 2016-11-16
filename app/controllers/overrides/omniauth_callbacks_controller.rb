@@ -6,11 +6,19 @@ module Overrides
 
       case auth_hash['provider']
         when 'facebook'
-          user.assign_attributes({
-            username: auth_hash['info']['name'],
-            email: auth_hash['info']['email']
-            # remote_avatar_url: auth_hash['info']['image']
-          })
+          if Rails.env.production?
+            user.assign_attributes({
+              username: auth_hash['info']['name'],
+              email: auth_hash['info']['email'],
+              remote_avatar_url: auth_hash['info']['image']
+            })
+          else
+            # do not save facebook profile in dev/test
+            user.assign_attributes({
+              username: auth_hash['info']['name'],
+              email: auth_hash['info']['email']
+            })
+          end
         else
           # catch unsupported oauth
           raise "Omniauth for #{auth_hash['provider']} is not supported!"
