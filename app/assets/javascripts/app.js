@@ -4,6 +4,7 @@ angular.module("wkndrCr", [
     "ui.router", 
     "ui.bootstrap", 
     "lr.upload", 
+    "ngMap",
     "ng-token-auth", 
     "templates"
   ])

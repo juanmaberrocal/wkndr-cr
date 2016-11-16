@@ -2,5 +2,15 @@
   <h1>Explore</h1>
 </div>
 
+<div class="row">
+	<div class="col-xs-12">
+		<!-- <div class="embed-responsive embed-responsive-16by9"> -->
+		  <ng-map zoom="10" center="[9.933921,-84.1065559]">
+	      <marker ng-repeat="location in locations" position="{{location.lat}},{{location.lng}}"></marker>
+	    </ng-map>
+		<!-- </div> -->
+	</div>
+</div>
+
 <br/>
 
