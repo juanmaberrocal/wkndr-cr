@@ -1,0 +1,79 @@
+<div id="locationFormDivOverlay" class="formDivOverlay"></div>
+<div id="locationFormDiv" class="formDiv">
+	<form id="locationForm" name="locationForm" role="form" ng-submit="locationSubmit()">
+		<h2>{{ isNew ? 'New' : 'Update' }} Location</h2>
+
+		<!-- error messages -->
+    <div class="bg-danger" ng-show="formErrors.errors">
+      <ul>
+        <li ng-repeat="error in formErrors.messages">{{error}}</li>
+      </ul>
+    </div>
+
+    <!-- name -->
+    <div class="form-group has-feedback" ng-class="{ 'has-success': locationForm.name.$touched && locationForm.name.$valid, 'has-error': locationForm.name.$touched && locationForm.name.$invalid }">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" class="form-control" placeholder="Name" required ng-model="location.name" />
+      <span class="glyphicon glyphicon-ok form-control-feedback" ng-show="locationForm.name.$touched && locationForm.name.$valid"></span>
+      <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="locationForm.name.$touched && locationForm.name.$invalid"></span>
+    </div>
+
+    <!-- description -->
+    <div class="form-group">
+      <label for="description">Description:</label>
+      <textarea id="description" name="description" class="form-control" placeholder="Description" ng-model="location.description"></textarea>
+    </div>
+
+    <!-- lat/lng -->
+    <div class="form-group has-feedback" ng-class="{ 'has-success': (locationForm.lat.$touched || locationForm.lng.$touched) && (locationForm.lat.$valid && locationForm.lng.$valid), 'has-error': (locationForm.lat.$touched || locationForm.lng.$touched) && (locationForm.lat.$invalid || locationForm.lng.$invalid) }">
+
+    	<!-- gmaps display -->
+    	<div class="row">
+    		<ng-map zoom="12" center="[{{location.lat}},{{location.lng}}]">
+		      <marker position="{{location.lat}},{{location.lng}}" draggable="true" on-dragend="gmapSetLatLng()"></marker>
+		    </ng-map>
+    	</div>
+    	<br/>
+
+    	<!-- manual display -->
+      <div class="row">
+        <div class="col-sm-6">
+      		<label for="dob">Latitude:</label>
+          <input type="number" step="any" id="lat" name="lat" class="form-control" placeholder="Lat" required string-to-number ng-model="location.lat" />
+          <span class="glyphicon glyphicon-ok form-control-feedback" style="margin-right:15px;" ng-show="locationForm.lat.$touched && locationForm.lat.$valid"></span>
+      		<span class="glyphicon glyphicon-remove form-control-feedback" style="margin-right:15px;" ng-show="locationForm.lat.$touched && locationForm.lat.$invalid"></span>
+        </div>
+        <div class="col-sm-6">
+      		<label for="dob">Longitud:</label>
+          <input type="number" step="any" id="lng" name="lng" class="form-control" placeholder="Lng" required string-to-number ng-model="location.lng" />
+          <span class="glyphicon glyphicon-ok form-control-feedback" style="margin-right:15px;" ng-show="locationForm.lng.$touched && locationForm.lng.$valid"></span>
+      		<span class="glyphicon glyphicon-remove form-control-feedback" style="margin-right:15px;" ng-show="locationForm.lng.$touched && locationForm.lng.$invalid"></span>
+        </div>
+      </div>
+      <p class="help-block" ng-show="(locationForm.lat.$touched || locationForm.lng.$touched) && (locationForm.lat.$invalid || locationForm.lng.$invalid)">Latitude and Longitud are required!</p>
+    </div>
+
+    <!-- url facebook -->
+    <div class="form-group has-feedback" ng-class="{ 'has-success': location.url_facebook.$touched && location.url_facebook.$valid, 'has-error': location.url_facebook.$touched && location.url_facebook.$invalid }">
+      <label for="url_facebook">Facebook:</label>
+      <input type="text" id="url_facebook" name="url_facebook" class="form-control" placeholder="https://www.facebook.com/" ng-model="location.url_facebook" />
+      <span class="glyphicon glyphicon-ok form-control-feedback" ng-show="location.url_facebook.$touched && location.url_facebook.$valid"></span>
+      <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="location.url_facebook.$touched && location.url_facebook.$invalid"></span>
+    </div>
+
+    <!-- url website -->
+    <div class="form-group has-feedback" ng-class="{ 'has-success': location.url_website.$touched && location.url_website.$valid, 'has-error': location.url_website.$touched && location.url_website.$invalid }">
+      <label for="email">Webiste:</label>
+      <input type="text" id="url_website" name="url_website" class="form-control" placeholder="https://" ng-model="location.url_website" />
+      <span class="glyphicon glyphicon-ok form-control-feedback" ng-show="location.url_website.$touched && location.url_website.$valid"></span>
+      <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="location.url_website.$touched && location.url_website.$invalid"></span>
+    </div>
+			
+		<div class="row">
+			<div class="col-sm-12">
+				<input type="submit" id="locationSubmitBtn" name="locationSubmitBtn" class="btn btn-success" value="{{ isNew ? 'Save' : 'Update' }}" ng-disabled="locationForm.$invalid">
+				<input type="submit" id="locationCancelBtn" name="locationCancelBtn" class="btn btn-danger" value="Cancel" ng-click="locationCancel()">
+			</div>
+		</div>
+	</form>
+</div>

@@ -1,0 +1,70 @@
+<div class="page-header">
+  <h1>{{ hasErrors ? 'Uh Oh! An Error Ocurred ...' : isNew ? 'New Location' : location.name }}</h1>
+</div>
+
+<div class="row" ng-show="hasErrors">
+	<div class="col-xs-12">
+		<p class="bg-danger text-danger">{{errors}}</p>	
+	</div>
+</div>
+
+<div class="row" ng-hide="hasErrors">
+	<div class="col-xs-12">
+
+		<div class="row">
+			<div class="col-md-4">
+
+				<!-- details -->
+				<div class="form-group">
+		      <label for="url_facebook">Description:</label>
+		      <p class="form-control-static">{{location.description}}</p>
+		    </div>
+
+				<div class="form-group">
+		      <label for="url_facebook">Facebook:</label>
+		      <p class="form-control-static">{{location.url_facebook}}</p>
+		    </div>
+
+				<div class="form-group">
+		      <label for="url_facebook">Webiste:</label>
+		      <p class="form-control-static">{{location.url_website}}</p>
+		    </div>
+
+		    <!-- categories -->
+		    <div class="form-group">
+		      <label for="url_facebook">Tags:</label>
+		      <p class="form-control-static"></p>
+		    </div>
+			</div>
+
+			<div class="col-md-8">
+				<div class="row">
+					<div class="col-xs-8 col-sm-8 col-md-10">
+						<a class="btn btn-success btn-block" href="#/me/events">Plan Event</a>
+					</div>
+					<div class="col-xs-4 col-sm-4 col-md-2">
+						<a class="btn btn-primary btn-block pull-right" href="#/me/explore/locations/{{location.id}}/edit">Edit</a>
+					</div>
+				</div>
+				
+				<br/>
+				<ng-map zoom="12" center="[{{location.lat}},{{location.lng}}]">
+		      <marker position="{{location.lat}},{{location.lng}}"></marker>
+		    </ng-map>
+			</div>
+
+		</div>
+
+		<!-- reviews -->
+		<div class="row">
+			<div class="col-xs-12">
+				<br/>
+				<h4>Reviews</h4>
+			</div>
+		</div>
+
+	</div>
+	
+	<!-- floating view for form -->
+	<div ui-view></div>
+</div>

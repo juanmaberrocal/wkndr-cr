@@ -4,6 +4,7 @@
 //
 // Directives
 //= require directives/locationCard
+//= require directives/stringToNumber
 //= require directives/fileUploadChange
 //
 // Resources

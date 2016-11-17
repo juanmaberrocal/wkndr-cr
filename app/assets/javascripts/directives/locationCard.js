@@ -8,7 +8,7 @@ angular.module("wkndrCr")
 	  	templateUrl: "me/directives/_location_card.html",
 	    link: function (scope, element, attrs) {
 	    	element.on("click", function(ev){
-	    		currRoute.goTo("me.editLocation", { id: scope.location.id })
+	    		currRoute.goTo("me.showLocation", { id: scope.location.id })
 	    	});
 	    }
 	  };
