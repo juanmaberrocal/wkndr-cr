@@ -37,6 +37,7 @@
 // Services
 //= require services/auth
 //= require services/currRoute
+//= require services/mobileCheck
 //
 // Layouts
 //= require_tree ../templates/layouts

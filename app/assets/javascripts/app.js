@@ -138,5 +138,7 @@ angular.module("wkndrCr", [
         // }
   	  }
   	])
-  .run(["currRoute", "Auth", function(currRoute, Auth){
+  .run(["currRoute", "Auth", "mobileCheck", function(currRoute, Auth, mobileCheck){
+    // run mobile check
+    mobileCheck.init();
   }])
