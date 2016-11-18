@@ -7,5 +7,8 @@
 //= require directives/stringToNumber
 //= require directives/fileUploadChange
 //
+// Services
+//= require services/gMapsHelper
+//
 // Resources
 //= require_tree ./resources

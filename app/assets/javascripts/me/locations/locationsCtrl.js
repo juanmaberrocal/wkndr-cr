@@ -1,7 +1,7 @@
 
 angular.module("wkndrCr")
 	// new
-	.controller("wkndrNewLocation", ["$scope", "currRoute", "LocationsResource", function($scope, currRoute, LocationsResource){
+	.controller("wkndrNewLocation", ["$scope", "currRoute", "GMapsHelper", "LocationsResource", function($scope, currRoute, GMapsHelper, LocationsResource){
 		// track if new record
 		$scope.isNew = true;
 
@@ -11,8 +11,10 @@ angular.module("wkndrCr")
 			messages: []
 		};
 
-		// initialize new location
+		// initialize new location &&
+		// set default center
 		$scope.location = {};
+		angular.extend($scope.location, GMapsHelper.defaultCenter);
 
 		// handle marker dragDrop to set new lat/lng
 		$scope.gmapSetLatLng = function(ev){
