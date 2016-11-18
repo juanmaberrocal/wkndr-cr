@@ -7,7 +7,7 @@
 	<div class="col-xs-12">
 		<!-- <div class="embed-responsive embed-responsive-16by9"> -->
 		  <ng-map id="exploreGMap" zoom="10" center="[{{gmapCenter.lat}},{{gmapCenter.lng}}]">
-	      <marker ng-repeat="location in locations" position="{{location.lat}},{{location.lng}}"></marker>
+	      <marker ng-repeat="location in locations | filter: {name: locationNameSearch}" position="{{location.lat}},{{location.lng}}"></marker>
 	    </ng-map>
 		<!-- </div> -->
 	</div>
@@ -18,10 +18,16 @@
 <!-- search/filter bar -->
 <div class="row">
 	<div class="col-md-4">
-		<input type="text" id="searchBar" name="searchBar" class="form-control" placeholder="Search ...">
+		<!-- search -->
+		<div class="form-group">
+			<div class="input-group">
+				<div class="input-group-addon"><span class="glyphicon glyphicon-search"></span></div>
+				<input type="text" id="searchBar" name="searchBar" class="form-control" placeholder="Search ..." ng-model="locationNameSearch">
+			</div>
+		</div>
 	</div>
 	<div class="col-md-4">
-		
+		<!-- todo: filter tags -->
 	</div>
 	<div class="col-md-4">
 		<a href="#/me/explore/locations/new" class="btn btn-primary btn-block">New</a>
@@ -33,7 +39,7 @@
 <!-- card display -->
 <div class="row">
 	<div class="col-xs-12">
-		<location-card ng-repeat="location in locations" location="location"></location-card>
+		<location-card ng-repeat="location in locations | filter: {name: locationNameSearch}" location="location"></location-card>
 	</div>
 </div>
 
