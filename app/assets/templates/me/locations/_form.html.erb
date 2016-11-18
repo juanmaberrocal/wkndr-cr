@@ -29,14 +29,14 @@
 
     	<!-- gmaps display -->
     	<div class="row">
-    		<ng-map zoom="12" center="[{{location.lat}},{{location.lng}}]">
+    		<ng-map id="locationFormGMap" zoom="12" center="[{{location.lat}},{{location.lng}}]">
 		      <marker position="{{location.lat}},{{location.lng}}" draggable="true" on-dragend="gmapSetLatLng()"></marker>
 		    </ng-map>
     	</div>
     	<br/>
 
     	<!-- manual display -->
-      <div class="row">
+      <div class="row" ng-hide="true">
         <div class="col-sm-6">
       		<label for="dob">Latitude:</label>
           <input type="number" step="any" id="lat" name="lat" class="form-control" placeholder="Lat" required string-to-number ng-model="location.lat" />

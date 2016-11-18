@@ -1,5 +1,5 @@
 <div class="page-header">
-  <h1>{{ hasErrors ? 'Uh Oh! An Error Ocurred ...' : isNew ? 'New Location' : location.name }}</h1>
+  <h1>{{ hasErrors ? 'Uh Oh! An Error Ocurred ...' : location.name }}</h1>
 </div>
 
 <div class="row" ng-show="hasErrors">
@@ -48,7 +48,7 @@
 				</div>
 				
 				<br/>
-				<ng-map zoom="12" center="[{{location.lat}},{{location.lng}}]">
+				<ng-map id="locationShowGMap" zoom="12" center="[{{location.lat}},{{location.lng}}]">
 		      <marker position="{{location.lat}},{{location.lng}}"></marker>
 		    </ng-map>
 			</div>

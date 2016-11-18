@@ -2,10 +2,11 @@
   <h1>Explore</h1>
 </div>
 
+<!-- gmaps -->
 <div class="row">
 	<div class="col-xs-12">
 		<!-- <div class="embed-responsive embed-responsive-16by9"> -->
-		  <ng-map zoom="10" center="[9.933921,-84.1065559]">
+		  <ng-map id="exploreGMap" zoom="10" center="[9.933921,-84.1065559]">
 	      <marker ng-repeat="location in locations" position="{{location.lat}},{{location.lng}}"></marker>
 	    </ng-map>
 		<!-- </div> -->
@@ -14,8 +15,27 @@
 
 <br/>
 
+<!-- search/filter bar -->
+<div class="row">
+	<div class="col-md-4">
+		<input type="text" id="searchBar" name="searchBar" class="form-control" placeholder="Search ...">
+	</div>
+	<div class="col-md-4">
+		
+	</div>
+	<div class="col-md-4">
+		<a href="#/me/explore/locations/new" class="btn btn-primary btn-block">New</a>
+	</div>
+</div>
+
+<br class="visible-xs visible-sm">
+
+<!-- card display -->
 <div class="row">
 	<div class="col-xs-12">
 		<location-card ng-repeat="location in locations" location="location"></location-card>
 	</div>
 </div>
+
+<!-- floating view for form -->
+<div ui-view></div>

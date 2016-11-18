@@ -1,10 +1,51 @@
 
-// show
 angular.module("wkndrCr")
-	.controller("wkndrShowLocation", ["$scope", "currRoute", "LocationsResource", function($scope, currRoute, LocationsResource){
+	// new
+	.controller("wkndrNewLocation", ["$scope", "currRoute", "LocationsResource", function($scope, currRoute, LocationsResource){
 		// track if new record
-		$scope.isNew = false;
+		$scope.isNew = true;
 
+		// track form errors
+		$scope.formErrors = {
+			errors: false,
+			messages: []
+		};
+
+		// initialize new location
+		$scope.location = {};
+
+		// handle marker dragDrop to set new lat/lng
+		$scope.gmapSetLatLng = function(ev){
+			var position = this.getPosition();
+
+			$scope.location.lat = position.lat();
+			$scope.location.lng = position.lng();
+		}
+
+		// handle form submission
+		$scope.locationSubmit = function(){
+			LocationsResource.create(
+				$scope.location, 
+				function(response){ // success handling after update
+					// remove errors
+					$scope.formErrors.errors = false;
+					$scope.formErrors.messages = [];
+					// redirect to location
+					currRoute.goTo("me.showLocation", { id: response.id });
+				}, function(response){ // error handling from server
+					// add errors
+					$scope.formErrors.errors = true;
+					$scope.formErrors.messages = response.data.errors;
+				});
+		};
+
+		// return to prev page
+		$scope.locationCancel = function(){
+			currRoute.goBack();
+		};
+	}])
+	// show
+	.controller("wkndrShowLocation", ["$scope", "currRoute", "LocationsResource", function($scope, currRoute, LocationsResource){
 		// load record
 		var locationId = currRoute.getCurrState().params.id;
 		$scope.location = LocationsResource.read(
@@ -20,12 +61,16 @@ angular.module("wkndrCr")
 			}
 		);
 	}])
+	// edit
 	.controller("wkndrEditLocation", ["$scope", "currRoute", "LocationsResource", function($scope, currRoute, LocationsResource){
+		// track if new record
+		$scope.isNew = false;
+
 		// track form errors
 		$scope.formErrors = {
 			errors: false,
 			messages: []
-		}
+		};
 
 		// copy location record from show ctrl (parent state) into working copy
 		if ($scope.$parent.location.$resolved){
@@ -41,7 +86,7 @@ angular.module("wkndrCr")
 
 			$scope.location.lat = position.lat();
 			$scope.location.lng = position.lng();
-		}
+		};
 
 		// handle form submission
 		$scope.locationSubmit = function(){
@@ -55,14 +100,13 @@ angular.module("wkndrCr")
 					currRoute.goTo("me.showLocation", { id: response.id }, { reload: true });
 				}, function(response){ // error handling from server
 					// add errors
-					console.log(response)
 					$scope.formErrors.errors = true;
 					$scope.formErrors.messages = response.data.errors;
 				});
-		}
+		};
 
 		// return to prev page
 		$scope.locationCancel = function(){
 			currRoute.goBack();
-		}
-	}])
+		};
+	}]);

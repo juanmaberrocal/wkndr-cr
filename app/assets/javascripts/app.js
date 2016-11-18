@@ -106,12 +106,17 @@ angular.module("wkndrCr", [
           })
           // nested explore states
           // locations
-          .state("me.showLocation", { // edit
+          .state("me.explore.newLocation", { // new
+            url: "/locations/new",
+            templateUrl: "me/locations/_form.html",
+            controller: "wkndrNewLocation"
+          })
+          .state("me.showLocation", { // show
             url: "/me/explore/locations/:id",
             templateUrl: "me/locations/_show.html",
             controller: "wkndrShowLocation"
           })
-          .state("me.showLocation.editLocation", {
+          .state("me.showLocation.editLocation", { // edit
             url: "/edit",
             templateUrl: "me/locations/_form.html",
             controller: "wkndrEditLocation"
@@ -120,8 +125,7 @@ angular.module("wkndrCr", [
             url: "/me/profile",
             templateUrl: "me/_profile.html",
             controller: "wkndrProfile"
-          })
-          ;
+          });
 
   	  	// redirect home
   	  	$urlRouterProvider.otherwise("/");

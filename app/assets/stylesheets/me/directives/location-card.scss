@@ -9,6 +9,7 @@ $card-body-height: 91px;
 location-card {
 	display: inline-block;
     padding: 10px;
+    margin-right: 15px;
     height: 150px;
     width: 250px;
     border: 1px solid;
@@ -17,13 +18,13 @@ location-card {
     background-color: $antiflashwhite-light;
     cursor: pointer;
 
-		-webkit-transition: box-shadow 0.25s ease-in-out;
-		transition: box-shadow 0.25s ease-in-out;
+	-webkit-transition: box-shadow 0.25s ease-in-out;
+	transition: box-shadow 0.25s ease-in-out;
 
     &:hover {
     	-webkit-box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.75);
-			-moz-box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.75);
-			box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.75);
+		-moz-box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.75);
+		box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.75);
     }
 
     > h6.location-title {
