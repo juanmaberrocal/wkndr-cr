@@ -5,6 +5,7 @@ angular.module("wkndrCr", [
     "ngResource",
     "ui.bootstrap", 
     "lr.upload", 
+    "ui.calendar",
     "ngMap",
     "ng-token-auth", 
     "templates"

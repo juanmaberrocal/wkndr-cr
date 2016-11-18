@@ -23,6 +23,11 @@
 // Angular Uploader (required for images)
 //= require angular-upload
 //
+//= Angular Calendar
+//= require moment
+//= require fullcalendar
+//= require angular-ui-calendar/src/calendar
+//
 // Angular-GMaps
 //= require ngmap/build/scripts/ng-map
 //
