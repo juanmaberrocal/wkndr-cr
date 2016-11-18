@@ -1,0 +1,27 @@
+{
+  "name": "wkndr_cr",
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.8",
+    "angular-ui-router": "^0.3.1",
+    "angular-cookie": "^4.1.0",
+    "ng-token-auth": "^0.0.29",
+    "angular-animate": "^1.5.8",
+    "angular-touch": "^1.5.8",
+    "angular-bootstrap": "^2.2.0",
+    "angular-upload": "^1.0.12",
+    "ngmap": "^1.17.8",
+    "angular-resource": "^1.5.8",
+    "angular-ui-calendar": "^1.0.2"
+  }
+}
