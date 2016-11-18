@@ -1,6 +1,8 @@
 // import components
 @import "components/color_palette"; // color palette
 
+$navbar-width: 100px;
+
 div#me-root {
   > nav.navbar {
     position: fixed;
@@ -8,7 +10,7 @@ div#me-root {
     bottom: 0;
     left: 0;
     height: 100%;
-    width: 100px;
+    width: $navbar-width;
     border: 0;
     border-right: 1px solid;
     box-shadow: 3px 0 10px 0 $grayblue;
@@ -83,6 +85,28 @@ div#me-root {
 
     div.page-header {
       border-bottom-color: $grayblue;
+    }
+
+    div.formDiv {
+      overflow-y: auto;
+      background: white;
+      padding: 25px;
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 60%;
+      height: 100%;
+      box-shadow: -3px 0 10px 0 #8D99AE;
+      border-left: 1px solid $grayblue !important;
+    }
+
+    div.formDivOverlay {
+      background-color: rgba(255, 255, 255, .6);
+      height: 100%;
+      width: calc(100% - #{$navbar-width});
+      position: absolute;
+      top: 0;
+      right: 0;
     }
   }
 }

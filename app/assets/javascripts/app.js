@@ -2,6 +2,7 @@ angular.module("wkndrCr", [
     "ngAnimate", 
     "ngTouch", 
     "ui.router", 
+    "ngResource",
     "ui.bootstrap", 
     "lr.upload", 
     "ngMap",
@@ -104,12 +105,28 @@ angular.module("wkndrCr", [
             templateUrl: "me/_explore.html",
             controller: "wkndrExplore"
           })
+          // nested explore states
+          // locations
+          .state("me.explore.newLocation", { // new
+            url: "/locations/new",
+            templateUrl: "me/locations/_form.html",
+            controller: "wkndrNewLocation"
+          })
+          .state("me.showLocation", { // show
+            url: "/me/explore/locations/:id",
+            templateUrl: "me/locations/_show.html",
+            controller: "wkndrShowLocation"
+          })
+          .state("me.showLocation.editLocation", { // edit
+            url: "/edit",
+            templateUrl: "me/locations/_form.html",
+            controller: "wkndrEditLocation"
+          })
           .state("me.profile", { // profile
             url: "/me/profile",
             templateUrl: "me/_profile.html",
             controller: "wkndrProfile"
-          })
-          ;
+          });
 
   	  	// redirect home
   	  	$urlRouterProvider.otherwise("/");

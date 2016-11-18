@@ -4,6 +4,18 @@ WkndrCr::Application.routes.draw do
 		omniauth_callbacks: 'overrides/omniauth_callbacks'
 	}
 
-	# Splash page routed as root
+	# crud API
+  namespace :api, defaults: { format: 'json' } do
+    namespace :v1 do
+
+      # crud locations
+      resources :locations do
+        # none
+      end
+      
+    end
+  end
+
+	# Root
 	root 'home#index'
 end

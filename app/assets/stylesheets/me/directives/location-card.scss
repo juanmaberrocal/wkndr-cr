@@ -1,0 +1,78 @@
+// import components
+@import "components/color_palette"; // color palette
+
+// calculate dimensions
+$card-footer-width: 30px;
+$card-body-width: 228px - $card-footer-width;
+$card-body-height: 91px;
+
+location-card {
+	display: inline-block;
+    padding: 10px;
+    margin:  0 15px 15px 0;
+    height: 150px;
+    width: 250px;
+    border: 1px solid;
+    box-sizing: border-box;
+    position: relative;
+    background-color: $antiflashwhite-light;
+    cursor: pointer;
+
+	-webkit-transition: box-shadow 0.25s ease-in-out;
+	transition: box-shadow 0.25s ease-in-out;
+
+    &:hover {
+    	-webkit-box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.75);
+		-moz-box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.75);
+		box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.75);
+    }
+
+    > h6.location-title {
+    	// text-align: center;
+    	padding-bottom: 3px;
+    	border-bottom: 1px solid;
+    }
+
+    > div.location-body {
+    	font-size: 12px;
+    	height: $card-body-height;
+    	width: $card-body-width;
+    	padding-right: 5px;
+    	float: left;
+    }
+
+    > div.location-footer {
+    	width: $card-footer-width;
+    	height: $card-body-height;
+    	float: left;
+
+    	> div.social-icon {
+    		height: 30px;
+    		width: 30px;
+    		border: 1px solid transparent;
+    		border-radius: 50%;
+    		display: inline-block;
+    		text-align: center;
+    		font-family: "CANDY";
+    		font-size: 34px;
+    		line-height: 24px;
+    		color: #FFF;
+
+    		&:not(:last-of-type) {
+    			margin-bottom: 5px;
+    		}
+
+    		&#urlFacebook {
+    			background-color: #337ab7;
+    		}
+
+    		&#urlWebsite {
+    			background-color: $coralred;
+    		}
+
+    		&.inactive {
+    			background-color: #DDD !important;
+    		}
+    	}
+    }
+}

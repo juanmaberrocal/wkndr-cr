@@ -2,11 +2,12 @@
   <h1>Explore</h1>
 </div>
 
+<!-- gmaps -->
 <div class="row">
 	<div class="col-xs-12">
 		<!-- <div class="embed-responsive embed-responsive-16by9"> -->
-		  <ng-map zoom="10" center="[9.933921,-84.1065559]">
-	      <marker ng-repeat="location in locations" position="{{location.lat}},{{location.lng}}"></marker>
+		  <ng-map id="exploreGMap" zoom="10" center="[{{gmapCenter.lat}},{{gmapCenter.lng}}]">
+	      <marker ng-repeat="location in locations | filter: {name: locationNameSearch}" title="{{location.name}}" position="{{location.lat}},{{location.lng}}"></marker>
 	    </ng-map>
 		<!-- </div> -->
 	</div>
@@ -14,3 +15,33 @@
 
 <br/>
 
+<!-- search/filter/new bar -->
+<div id="searchFilterNewBar" class="row">
+	<div id="searchDiv" class="col-md-4">
+		<!-- search -->
+		<div class="form-group">
+			<div class="input-group">
+				<div class="input-group-addon"><span class="glyphicon glyphicon-search"></span></div>
+				<input type="text" id="searchBar" name="searchBar" class="form-control" placeholder="Search ..." ng-model="locationNameSearch">
+			</div>
+		</div>
+	</div>
+	<div id="filterDiv" class="col-md-4">
+		<!-- todo: filter tags -->
+	</div>
+	<div id="newDiv" class="col-md-4">
+		<a href="#/me/explore/locations/new" class="btn btn-primary btn-block">New</a>
+	</div>
+</div>
+
+<br class="visible-xs visible-sm">
+
+<!-- card display -->
+<div class="row">
+	<div class="col-xs-12">
+		<location-card ng-repeat="location in locations | filter: {name: locationNameSearch}" location="location"></location-card>
+	</div>
+</div>
+
+<!-- floating view for form -->
+<div ui-view></div>

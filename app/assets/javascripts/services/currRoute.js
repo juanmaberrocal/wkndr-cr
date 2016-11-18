@@ -28,8 +28,8 @@ angular.module("wkndrCr")
 		handle navigation
 		*/
 		// navigate to given route
-		this.goTo = function(state, params){
-			return $state.go(state, params);
+		this.goTo = function(state, params, stateParams){
+			return $state.go(state, params, stateParams);
 		}
 
 		// navigate route history back
