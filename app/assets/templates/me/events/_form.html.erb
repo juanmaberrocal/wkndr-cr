@@ -1,0 +1,67 @@
+<div id="eventFormDivOverlay" class="formDivOverlay"></div>
+<div id="eventFormDiv" class="formDiv">
+	<form id="eventForm" name="eventForm" role="form" ng-submit="eventSubmit()">
+		<h2>{{ isNew ? 'New' : 'Update' }} Event</h2>
+
+		<!-- error messages -->
+    <div class="bg-danger" ng-show="formErrors.errors">
+      <ul>
+        <li ng-repeat="error in formErrors.messages">{{error}}</li>
+      </ul>
+    </div>
+
+    <!-- title -->
+    <div class="form-group has-feedback" ng-class="{ 'has-success': eventForm.title.$touched && eventForm.title.$valid, 'has-error': eventForm.title.$touched && eventForm.title.$invalid }">
+      <label for="title">Title:</label>
+      <input type="text" id="title" name="title" class="form-control" placeholder="Name" required ng-model="event.title" />
+      <span class="glyphicon glyphicon-ok form-control-feedback" ng-show="eventForm.title.$touched && eventForm.title.$valid"></span>
+      <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="eventForm.title.$touched && eventForm.title.$invalid"></span>
+    </div>
+
+    <!-- description -->
+    <div class="form-group">
+      <label for="description">Description:</label>
+      <textarea id="description" name="description" class="form-control" placeholder="Description" ng-model="event.description"></textarea>
+    </div>
+
+    <!-- start|end date -->
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group" ng-class="{ 'has-success': eventForm.start_date.$touched && eventForm.start_date.$valid, 'has-error': eventForm.start_date.$touched && eventForm.start_date.$invalid }">
+          <label for="name">Start Date:</label>
+          <div class="input-group">
+            <input type="text" id="start_date" name="start_date" class="form-control" uib-datepicker-popup="{{calendarPicker.format}}" datepicker-options="calendarPicker.options" show-button-bar="false" is-open="startDateOpen" required ng-model="event.start_date" ng-pattern="calendarPicker.formatValidation" />
+            <span class="glyphicon glyphicon-ok form-control-feedback" style="right:40px;" ng-show="eventForm.start_date.$touched && eventForm.start_date.$valid"></span>
+            <span class="glyphicon glyphicon-remove form-control-feedback" style="right:40px;" ng-show="eventForm.start_date.$touched && eventForm.start_date.$invalid"></span>
+            <span class="input-group-btn">
+              <button type="button" class="btn btn-default" ng-click="calendarPicker.onClick('startDateOpen')"><span class="glyphicon glyphicon-calendar"></span></button>
+            </span>
+          </div>
+          <p class="help-block" ng-show="eventForm.start_date.$touched && eventForm.start_date.$invalid-pattern">Please enter a date in {{calendarPicker.format}} format!</p>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group has-feedback" ng-class="{ 'has-success': eventForm.end_date.$touched && eventForm.end_date.$valid, 'has-error': eventForm.end_date.$touched && eventForm.end_date.$invalid }">
+          <label for="name">End Date:</label>
+          <div class="input-group">
+            <input type="text" id="end_date" name="end_date" class="form-control" uib-datepicker-popup="{{calendarPicker.format}}" datepicker-options="calendarPicker.options" show-button-bar="false" is-open="endDateOpen" required ng-model="event.end_date" ng-pattern="calendarPicker.formatValidation" />
+            <span class="glyphicon glyphicon-ok form-control-feedback" style="right:40px;" ng-show="eventForm.end_date.$touched && eventForm.end_date.$valid"></span>
+            <span class="glyphicon glyphicon-remove form-control-feedback" style="right:40px;" ng-show="eventForm.end_date.$touched && eventForm.end_date.$invalid"></span>
+            <span class="input-group-btn">
+              <button type="button" class="btn btn-default" ng-click="calendarPicker.onClick('endDateOpen')"><span class="glyphicon glyphicon-calendar"></span></button>
+            </span>
+          </div>
+          <p class="help-block" ng-show="eventForm.end_date.$touched && eventForm.end_date.$invalid-pattern">Please enter a date in {{calendarPicker.format}} format!</p>
+        </div>
+      </div>
+    </div>
+			
+		<div class="row">
+			<div class="col-sm-12">
+				<input type="submit" id="eventSubmitBtn" name="eventSubmitBtn" class="btn btn-success" value="{{ isNew ? 'Save' : 'Update' }}" ng-disabled="eventForm.$invalid">
+				<button type="button" id="eventCancelBtn" name="eventCancelBtn" class="btn btn-danger" ng-click="eventCancel()">Cancel</button>
+			</div>
+		</div>
+	</form>
+</div>

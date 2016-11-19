@@ -96,12 +96,27 @@ angular.module("wkndrCr", [
             templateUrl: "me/_index.html",
             controller: "wkndrDashboard"
           })
-          .state("me.events", { // events
+          /*
+          events states
+          */
+          .state("me.events", { // root
             url: "/me/events",
             templateUrl: "me/_events.html",
             controller: "wkndrEvents"
           })
-          .state("me.explore", { // explore
+          // nested events states
+          .state("me.events.newEvent", { // new
+            url: "/new",
+            templateUrl: "me/events/_form.html",
+            controller: "wkndrNewEvent",
+            params: {
+              date: { value: (new Date()) }
+            }
+          })
+          /*
+          explore states
+          */
+          .state("me.explore", { // root
             url: "/me/explore",
             templateUrl: "me/_explore.html",
             controller: "wkndrExplore"
@@ -123,7 +138,10 @@ angular.module("wkndrCr", [
             templateUrl: "me/locations/_form.html",
             controller: "wkndrEditLocation"
           })
-          .state("me.profile", { // profile
+          /*
+          profile states
+          */
+          .state("me.profile", { // root
             url: "/me/profile",
             templateUrl: "me/_profile.html",
             controller: "wkndrProfile"

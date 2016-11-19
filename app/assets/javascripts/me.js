@@ -8,6 +8,7 @@
 //= require directives/fileUploadChange
 //
 // Services
+//= require services/calendarHelper
 //= require services/gMapsHelper
 //
 // Resources
