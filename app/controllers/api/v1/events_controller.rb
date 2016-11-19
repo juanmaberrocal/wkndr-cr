@@ -15,8 +15,15 @@ module Api
 			# GET /events.json
 			def index
 				begin
+					# query user events (filter by date range if necessary)
+					events = if params.has_key?(:start) and params.has_key?(:stop)
+						current_user.events.where('start_date > ? AND end_date < ?', params[:start], params[:stop])
+					else
+						current_user.events
+					end
+
 					# return response as json array of events
-					render json: current_user.events
+					render json: events
 				rescue => e
 					# catch errors and return message
 					build_error_response(e.message)
