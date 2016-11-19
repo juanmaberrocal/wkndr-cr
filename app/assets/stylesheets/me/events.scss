@@ -1,0 +1,11 @@
+div#me-root {
+	div[ui-calendar] {
+		margin-bottom: 15px;
+
+		div.fc-view-container {
+			div.fc-view {
+				background-color: #FFF;
+			}
+		}
+	}
+}

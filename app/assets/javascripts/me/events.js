@@ -5,6 +5,7 @@ angular.module("wkndrCr")
 		// configure events calendar ui
 		$scope.uiConfig = {
 			calendar: {
+				timezone: "local",
 				defaultView: (mobileCheck.isMobile() ? "listMonth" : "month"),
 				editable: false,
 				dayClick: function(date, jsEvent, view){
