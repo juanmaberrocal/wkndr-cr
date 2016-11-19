@@ -113,6 +113,16 @@ angular.module("wkndrCr", [
               date: { value: (new Date()) }
             }
           })
+          .state("me.showEvent", { // show
+            url: "/me/events/:id",
+            templateUrl: "me/events/_show.html",
+            controller: "wkndrShowEvent"
+          })
+          .state("me.showEvent.editEvent", { // edit
+            url: "/edit",
+            templateUrl: "me/events/_form.html",
+            controller: "wkndrEditEvent"
+          })
           /*
           explore states
           */

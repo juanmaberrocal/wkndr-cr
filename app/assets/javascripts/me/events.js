@@ -24,6 +24,7 @@ angular.module("wkndrCr")
 							// build event objects for calendar
 							for (var i=0; i<response.length; i++){
 								$scope.events.push({
+									id: response[i].id,
 									title: response[i].title,
 									start: moment(response[i].start_date).toDate(),
 									end: moment(response[i].end_date).toDate(),
@@ -38,6 +39,9 @@ angular.module("wkndrCr")
 				},
 				dayClick: function(date, jsEvent, view){
 					currRoute.goTo("me.events.newEvent", { date: date.toDate() })
+				},
+				eventClick: function(event, jsEvent, view){
+					currRoute.goTo("me.showEvent", { id: event.id })
 				}
 			}
 		}
