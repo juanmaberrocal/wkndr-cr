@@ -16,7 +16,7 @@ module Api
 			def index
 				begin
 					# return response as json array of events
-					render json: Event.all.as_json
+					render json: current_user.events
 				rescue => e
 					# catch errors and return message
 					build_error_response(e.message)
@@ -37,8 +37,10 @@ module Api
 			# POST /events.json
 			def create
 				begin
-					# initialize new event
+					# initialize new event &&
+					# set owner to current user
 					@event = Event.new(event_params)
+					@event.owner_user = current_user
 
 					# save/create (catch validation errors)
 					if @event.save
@@ -56,6 +58,9 @@ module Api
 		  # PATCH/PUT /events/1.json
 			def update
 				begin
+					# ensure current user event
+					check_event_owner
+					
 					# update (catch validation errors)
 					if @event.update(event_params)
 						# return response as json object of updated event
@@ -72,6 +77,9 @@ module Api
 			# DELETE /logactions/1.json
 			def destroy
 				begin
+					# ensure current user event
+					check_event_owner
+
 					# update (catch validation errors)
 					if @event.destroy
 						# return response as json object of updated event
@@ -91,9 +99,13 @@ module Api
 				@event = Event.find(params[:id])
 			end
 
+			def check_event_owner
+				raise 'You cannot update events where you are not the owner!' unless @event.owner_user == current_user
+			end
+
 			# white-list params
 			def event_params
-				params.require(:event).permit(:name, :description, :lat, :lng, :url_facebook, :url_website)
+				params.require(:event).permit(:title, :description, :start_date, :end_date)
 			end
 
 		end

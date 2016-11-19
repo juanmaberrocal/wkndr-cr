@@ -16,6 +16,16 @@ RSpec.describe Event, type: :model do
 			# requires user association
 			expect(build(:event, owner_user: nil)).to_not be_valid
 		end
+
+		it 'Presence Start Date' do
+			# requires start_dte
+			expect(build(:event, start_date: nil)).to_not be_valid
+		end
+
+		it 'Presence End Date' do
+			# requires end_date
+			expect(build(:event, end_date: nil)).to_not be_valid
+		end
 	end
 
 	# relations

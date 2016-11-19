@@ -17,5 +17,5 @@ class Event < ActiveRecord::Base
   has_many :comments
 
   # validations
-  validates :owner_user, presence: true
+  validates :owner_user, :start_date, :end_date, presence: true
 end
