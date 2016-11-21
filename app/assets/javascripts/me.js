@@ -3,6 +3,7 @@
 //= require_tree ../templates/me
 //
 // Directives
+//= require directives/eventUsers
 //= require directives/locationCard
 //= require directives/stringToNumber
 //= require directives/fileUploadChange

@@ -1,0 +1,66 @@
+<div class="row">
+	<div class="col-xs-12">
+		
+		<!-- user groups -->
+		<div ng-repeat="(status, _users) in users" class="userGroup {{status}}">
+			
+			<!-- user bubbles -->
+			<div ng-repeat="user in _users" class="userBubble">
+        <img ng-src="{{ user.avatar.small.url }}" alt="{{user.username}}" class="img-circle" />
+				<div>{{user.username}}</div>
+			</div>
+
+		</div>
+
+		<!-- invite new user -->
+		<div class="userGroup invite">
+			<div class="userBubble">
+				<div id="inviteFriend" class="btn-primary"><span class="glyphicon glyphicon-plus"></span>
+				<!-- <div>Invite</div> -->
+			</div>
+		</div>
+
+	</div>
+</div>
+
+<script type="text/ng-template" id="inviteModal.html">
+  <div class="modal-header">
+    <h3 class="modal-title" id="modal-title">Invite Friends</h3>
+  </div>
+  <div class="modal-body" id="modal-body">
+
+    <!-- error messages -->
+    <div class="bg-danger" ng-show="$modalCtrl.errors.error">
+      <ul>
+        <li ng-repeat="error in $modalCtrl.errors.messages">{{error}}</li>
+      </ul>
+    </div>
+
+    <div class="row">
+	    <div class="col-xs-12">
+	    	<div class="table-responsive">
+	    		<table class="table">
+	    			<thead>
+	    				<tr>
+	    					<th></th>
+	    					<th colspan="2">Friends</th>
+	    				</tr>
+	    			</thead>
+	    			<tbody>
+	    				<tr ng-repeat="friend in $modalCtrl.friends">
+	    					<td></td>
+	    					<td><img ng-src="{{ friend.avatar.thumb.url }}" alt="{{friend.username}}" class="img-circle" /></td>
+	    					<td>{{friend.username}}</td>
+	    				</tr>
+	    			</tbody>
+	    		</table>
+	    	</div>
+	    </div>
+	  </div>
+
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-success" type="button" ng-disabled="$modalCtrl.inviteFriends.length == 0" ng-click="$modalCtrl.ok()">OK</button>
+    <button class="btn btn-default" type="button" ng-click="$modalCtrl.cancel()">Cancel</button>
+  </div>
+</script>

@@ -177,6 +177,9 @@ RSpec.describe Api::V1::EventsController, type: :controller do
 			end
 		end
 
+		# it 'users' do
+		# end
+
 	end
 
 	# ensure errors always return as data.errors => Array(messages)
