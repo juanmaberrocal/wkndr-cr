@@ -58,7 +58,7 @@ angular.module("wkndrCr")
 	.controller("wkndrShowEvent", ["$scope", "currRoute", "EventsResource", function($scope, currRoute, EventsResource){
 		// load record
 		var eventId = currRoute.getCurrState().params.id;
-		$scope.event = EventsResource.read(
+		$scope.eventLoad = EventsResource.read(
 			{ id: eventId }, 
 			function(response){
 				// set record
@@ -98,16 +98,16 @@ angular.module("wkndrCr")
 
 		// copy event record from show ctrl (parent state) into working copy
 		// convert dates to jsObjects for datepicker
-		if ($scope.$parent.event.$resolved){
+		if ($scope.$parent.eventLoad.$resolved){
 			$scope.event = angular.copy($scope.$parent.event);
 			$scope.event.start_date = moment($scope.event.start_date).toDate();
 			$scope.event.end_date = moment($scope.event.end_date).toDate();
 		}
 		else {
-			$scope.$parent.event.$promise.then(function(res){ 
-				$scope.event = angular.copy(res);
-				$scope.event.start_date = moment(res.start_date).toDate();
-				$scope.event.end_date = moment(res.end_date).toDate();
+			$scope.$parent.eventLoad.$promise.then(function(res){ 
+				$scope.event = angular.copy(res.event);
+				$scope.event.start_date = moment($scope.event.start_date).toDate();
+				$scope.event.end_date = moment($scope.event.end_date).toDate();
 			});
 		}
 
