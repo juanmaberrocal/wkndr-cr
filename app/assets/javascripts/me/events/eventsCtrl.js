@@ -55,9 +55,12 @@ angular.module("wkndrCr")
 		};
 	}])
 	// show
-	.controller("wkndrShowEvent", ["$scope", "currRoute", "calendarHelper", "EventsResource", function($scope, currRoute, calendarHelper, EventsResource){
+	.controller("wkndrShowEvent", ["$scope", "currRoute", "calendarHelper", "GMapsHelper", "EventsResource", function($scope, currRoute, calendarHelper, GMapsHelper, EventsResource){
 		// set calendar format
 		$scope.calendarFormat = calendarHelper.defaultDateFormat;
+
+		// set default gmap location
+		$scope.defaultCenter = GMapsHelper.defaultCenter;
 
 		// load record
 		var eventId = currRoute.getCurrState().params.id;

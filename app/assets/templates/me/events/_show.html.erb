@@ -15,22 +15,36 @@
 			<div class="col-md-4">
 
 				<!-- details -->
-				<div class="form-group">
-		      <label for="url_facebook">Description:</label>
-		      <p class="form-control-static">{{event.description}}</p>
-		    </div>
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="form-group">
+				      <label for="description">Description:</label>
+				      <p class="form-control-static">{{event.description}}</p>
+				    </div>
+
+				    <div class="row">
+				    	<div class="col-xs-6">
+								<div class="form-group">
+						      <label for="start_date">Start Date:</label>
+						      <p class="form-control-static">{{event.start_date | date: calendarFormat }}</p>
+						    </div>
+				    	</div>
+				    	<div class="col-xs-6">
+								<div class="form-group">
+						      <label for="end_date">End Date:</label>
+						      <p class="form-control-static">{{event.end_date | date: calendarFormat }}</p>
+						    </div>
+				    	</div>
+				    </div>
+					</div>
+				</div>
 
 		    <div class="row">
-		    	<div class="col-xs-6">
-						<div class="form-group">
-				      <label for="url_facebook">Start Date:</label>
-				      <p class="form-control-static">{{event.start_date | date: calendarFormat }}</p>
-				    </div>
-		    	</div>
-		    	<div class="col-xs-6">
-						<div class="form-group">
-				      <label for="url_facebook">End Date:</label>
-				      <p class="form-control-static">{{event.end_date | date: calendarFormat }}</p>
+		    	<div class="col-xs-12">
+		    		<!-- <h5>Location Details</h5> -->
+		    		<div class="form-group">
+				      <label for="description">Location Details:</label>
+				      <p class="form-control-static">{{location.description}}</p>
 				    </div>
 		    	</div>
 		    </div>
@@ -40,7 +54,7 @@
 			<div class="col-md-8">
 				<div class="row">
 					<div class="col-xs-8 col-sm-8 col-md-10">
-						<a class="btn btn-success btn-block" ui-sref="me.showEvent.editEventLocation({ id: event.id, location_id: event.location_id })">{{event.location_id ? 'Update' : 'Pick'}} Location</a>
+						<a class="btn btn-success btn-block" ui-sref="me.showEvent.editEventLocation({ id: event.id, location_id: event.location_id })">{{!!event.location_id ? 'Update' : 'Pick'}} Location</a>
 					</div>
 					<div class="col-xs-4 col-sm-4 col-md-2">
 						<a class="btn btn-primary btn-block pull-right" ui-sref="me.showEvent.editEvent({ id: event.id})">Edit</a>
@@ -48,9 +62,9 @@
 				</div>
 				
 				<br/>
-				<!-- <ng-map id="eventShowGMap" zoom="12" center="[{{event.lat}},{{event.lng}}]">
-		      <marker title="{{position_string}}" position="{{event.lat}},{{event.lng}}"></marker>
-		    </ng-map> -->
+				<ng-map id="locationShowGMap" zoom="12" center="[{{location.lat || defaultCenter.lat}},{{location.lng || defaultCenter.lng}}]">
+		      <marker visible="!!event.location_id" position="{{location.lat}},{{location.lng}}"></marker>
+		    </ng-map>
 			</div>
 
 		</div>
