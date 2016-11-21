@@ -34,8 +34,11 @@ module Api
 			def show
 				begin
 					# get event &&
-					# eager load users
-					@event = Event.includes(:users).find(params[:id])
+					# eager load users + location
+					@event = Event.includes(:users, :location).find(params[:id])
+
+					# set location
+					@location = @event.location
 
 					# build users map grouped by status
 					@users = {}
@@ -47,6 +50,7 @@ module Api
 					# return response as json object of event
 					render json: {
 						event: @event.as_json,
+						location: @location.as_json,
 						users: @users.as_json
 					}
 				rescue => e

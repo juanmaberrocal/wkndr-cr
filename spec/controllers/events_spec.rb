@@ -77,6 +77,9 @@ RSpec.describe Api::V1::EventsController, type: :controller do
 
 			# ensure users are also returned (1 owner)
 			expect(json["users"]["owner"].length).to eq(1)
+
+			# ensure location is also returned (1 location)
+			expect(json["location"]["id"]).to eq(event.location.id)
 		end
 
 		# users can create new events
