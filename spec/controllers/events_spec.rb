@@ -73,7 +73,10 @@ RSpec.describe Api::V1::EventsController, type: :controller do
 			expect(response).to be_success
 
 			# ensure correct record is returned
-			expect(json["id"]).to eq(event.id)
+			expect(json["event"]["id"]).to eq(event.id)
+
+			# ensure users are also returned (1 owner)
+			expect(json["users"]["owner"].length).to eq(1)
 		end
 
 		# users can create new events

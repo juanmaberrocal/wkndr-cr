@@ -7,7 +7,7 @@ module Api
 			before_action :authenticate_user!
 
 			# set event
-			before_action :set_event, only: [:show, :update, :destroy, :close]
+			before_action :set_event, only: [:show, :update, :destroy]
 
 			# default to json response
 			respond_to :json
@@ -33,8 +33,22 @@ module Api
 			# GET /events/1.json
 			def show
 				begin
+					# get event &&
+					# eager load users
+					@event = Event.includes(:users).find(params[:id])
+
+					# build users map grouped by status
+					@users = {}
+					@event.event_users.group_by(&:status).each do |status, event_users|
+						@users[status] = [] unless @users.has_key?(status)
+						event_users.each { |event_user| @users[status] << event_user.user }
+					end
+
 					# return response as json object of event
-					render json: @event.as_json
+					render json: {
+						event: @event.as_json,
+						users: @users.as_json
+					}
 				rescue => e
 					# catch errors and return message
 					build_error_response(e.message)

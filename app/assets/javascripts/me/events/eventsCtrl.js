@@ -62,7 +62,8 @@ angular.module("wkndrCr")
 			{ id: eventId }, 
 			function(response){
 				// set record
-				$scope.event = response;
+				$scope.event = response.event;
+				$scope.users = response.users;
 			},
 			function(response){
 				// display errors
