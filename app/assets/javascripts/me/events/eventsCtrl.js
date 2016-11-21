@@ -55,15 +55,20 @@ angular.module("wkndrCr")
 		};
 	}])
 	// show
-	.controller("wkndrShowEvent", ["$scope", "currRoute", "EventsResource", function($scope, currRoute, EventsResource){
+	.controller("wkndrShowEvent", ["$scope", "currRoute", "calendarHelper", "EventsResource", function($scope, currRoute, calendarHelper, EventsResource){
+		// set calendar format
+		$scope.calendarFormat = calendarHelper.defaultDateFormat;
+
 		// load record
 		var eventId = currRoute.getCurrState().params.id;
 		$scope.eventLoad = EventsResource.read(
 			{ id: eventId }, 
 			function(response){
-				// set record
+				// set records
 				$scope.event = response.event;
+				$scope.location = response.location;
 				$scope.users = response.users;
+				// $scope.comments = [];
 			},
 			function(response){
 				// display errors
@@ -131,5 +136,59 @@ angular.module("wkndrCr")
 		// return to prev page
 		$scope.eventCancel = function(){
 			currRoute.goBack();
+		};
+	}])
+	.controller("wkndrEditEventLocation", ["$scope", "currRoute", "EventsResource", "LocationsResource", function($scope, currRoute, EventsResource, LocationsResource){
+		// get set location
+		$scope.location_id = currRoute.getCurrState().params.location_id;
+
+		// track errors
+		$scope.formErrors = {
+			errors: false,
+			messages: []
+		};
+
+		// load locations &&
+		$scope.locations = LocationsResource.query({},
+			function(response){ // success handle
+				// set init selected card
+				$("div#locationCardSelection").find("#locationId_" + $scope.location_id).addClass("btn-primary"); 
+			},
+			function(response){ // error handle
+				// display errors
+				$scope.formErrors.errors = true;
+				$scope.formErrors.messages = response.data.errors;
+			});
+
+		// bind location card click to set location
+		$scope.setLocation = function(ev, ele){
+			$scope.$apply(function(){
+				// set new location id from card
+				$scope.location_id = $(ele).attr("id").replace("locationId_", "");
+			});
+
+			// update display of selected location card
+			$("div#locationCardSelection").find("location-card").removeClass("btn-primary");
+			$(ele).addClass("btn-primary");
+		}
+
+		// bind select submit
+		$scope.locationSelect = function(){
+			EventsResource.update(
+				{
+					id: currRoute.getCurrState().params.id,
+					location_id: $scope.location_id
+				}, 
+				function(response){ // success handling after update
+					// remove errors
+					$scope.formErrors.errors = false;
+					$scope.formErrors.messages = [];
+					// redirect to event
+					currRoute.goTo("me.showEvent", { id: response.id }, { reload: true });
+				}, function(response){ // error handling from server
+					// add errors
+					$scope.formErrors.errors = true;
+					$scope.formErrors.messages = response.data.errors;
+				});
 		};
 	}]);

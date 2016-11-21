@@ -3,13 +3,27 @@ angular.module("wkndrCr")
 	  return {
 	    restrict: "E",
 	  	scope: {
-	  		location: "="
+	  		location: "=",
+	  		noClick: "=",
+	  		replaceClick: "="
 	  	},
 	  	templateUrl: "me/directives/_location_card.html",
 	    link: function (scope, element, attrs) {
-	    	element.on("click", function(ev){
-	    		currRoute.goTo("me.showLocation", { id: scope.location.id })
-	    	});
+	    	if (typeof attrs.noClick != "undefined"){
+	    		// no binding
+	    	}
+	    	else if (typeof attrs.replaceClick != "undefined"){
+	    		// custom binding
+	    		element.on("click", function(ev){
+	    			scope.replaceClick(ev, element);
+	    		});
+	    	}
+	    	else {
+	    		// default click navigation
+		    	element.on("click", function(ev){
+		    		currRoute.goTo("me.showLocation", { id: scope.location.id })
+		    	});
+	    	}
 	    }
 	  };
 	});

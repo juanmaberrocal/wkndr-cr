@@ -1,0 +1,31 @@
+<div id="eventFormDivOverlay" class="formDivOverlay"></div>
+<div id="eventFormDiv" class="formDiv">
+	<h2>{{ location_id ? 'Update' : 'Set' }} Location</h2>
+
+	<!-- search/filter/new bar -->
+	<div id="searchFilterNewBar" class="row">
+		<div id="searchDiv" class="col-md-4">
+			<!-- search -->
+			<div class="form-group">
+				<div class="input-group">
+					<div class="input-group-addon"><span class="glyphicon glyphicon-search"></span></div>
+					<input type="text" id="searchBar" name="searchBar" class="form-control" placeholder="Search ..." ng-model="locationNameSearch">
+				</div>
+			</div>
+		</div>
+		<div id="filterDiv" class="col-md-4">
+			<!-- todo: filter tags -->
+		</div>
+		<div id="newDiv" class="col-md-4">
+			<button type="button" class="btn btn-success btn-block" ng-disabled="!location_id" ng-click="locationSelect()">Select</a>
+		</div>
+	</div>
+
+	<br class="visible-xs visible-sm">
+
+	<div id="locationCardSelection" class="row">
+		<div class="col-xs-12">
+			<location-card ng-repeat="location in locations | filter: {name: locationNameSearch}" location="location" replace-click="setLocation" id="locationId_{{location.id}}"></location-card>
+		</div>
+	</div>
+</div>

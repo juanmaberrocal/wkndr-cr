@@ -124,6 +124,14 @@ angular.module("wkndrCr", [
             templateUrl: "me/events/_form.html",
             controller: "wkndrEditEvent"
           })
+          .state("me.showEvent.editEventLocation", { // edit event location
+            url: "/editLocation",
+            templateUrl: "me/events/_formLocation.html",
+            controller: "wkndrEditEventLocation",
+            params: {
+              location_id: { value: null }
+            }
+          })
           /*
           explore states
           */
