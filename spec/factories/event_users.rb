@@ -3,8 +3,7 @@ FactoryGirl.define do
   factory :event_user do
     event
     user
-    owner false
-    admin false
+    status 'accepted'
   end
 
 end

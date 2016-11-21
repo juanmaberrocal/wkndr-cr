@@ -21,6 +21,10 @@ RSpec.describe EventUser, type: :model do
 			# requires user association
 			expect(build(:event_user, user: nil)).to_not be_valid
 		end
+
+		it 'Inclusion Status' do 
+			expect(build(:event_user, status: nil)).to_not be_valid
+		end
 	end
 
 	# relations
