@@ -17,6 +17,13 @@ WkndrCr::Application.routes.draw do
       resources :locations do
         # none
       end
+
+      # users
+      resources :users, except: [:index, :new, :create, :show, :edit, :update, :destroy] do
+        member do
+          get 'friends'
+        end
+      end
       
     end
   end
