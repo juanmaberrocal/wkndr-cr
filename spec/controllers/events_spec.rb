@@ -17,30 +17,54 @@ RSpec.describe Api::V1::EventsController, type: :controller do
 		login_user # support/controller_macros
 
 		# users can view events
-		it 'index' do 
-			# build fake events
-			events = FactoryGirl.create_list(:event, rand(1..10))
-			
-			# build 5 events for user signed in
-			user_events = create_list(:event, 5, owner_user: @user)
+		describe 'index' do
+			it 'pulls all records with no start/end params' do 
+				# build fake events
+				events = create_list(:event, rand(1..10))
+				
+				# build 5 events for user signed in
+				user_events = create_list(:event, 5, owner_user: @user)
 
-			# assign user signed in as an invited user of fake event
-			create(:event_user, event: events.first, user: @user)
+				# assign user signed in as an invited user of fake event
+				create(:event_user, event: events.first, user: @user)
 
-			# call index
-			get :index, format: :json
+				# call index
+				get :index, format: :json
 
-			# ensure user can view
-			expect(response).to be_success
+				# ensure user can view
+				expect(response).to be_success
 
-			# ensure correct amount of records returned
-			expect(json.length).to eq(user_events.length+1)
+				# ensure correct amount of records returned
+				expect(json.length).to eq(user_events.length+1) # +1 for invited user
+			end
+
+			it 'pulls set of records within start/end params' do
+				# set start and end date params
+				start_date = Date.today - 15.days
+				end_date = Date.today + 15.days
+
+				# build events for user signed in out side of date params
+				events = create_list(:event, rand(1..10), owner_user: @user, start_date: (start_date - 10.days), end_date: (start_date - 5.days))
+
+				# build 5 events for user signed in within date params
+				in_range_events = create_list(:event, rand(1..10), owner_user: @user, start_date: (start_date + 5.days), end_date: (end_date - 2.days))
+
+				# call index
+				get :index, start: start_date, stop: end_date, format: :json
+
+				# ensure user can view
+				expect(response).to be_success
+
+				# ensure correct amount of records returned
+				expect(json.length).to eq(in_range_events.length)
+			end
 		end
+
 
 		# users can view specific events
 		it 'show' do
 			# create fake event
-			event = FactoryGirl.create(:event)
+			event = create(:event)
 
 			# call show
 			get :show, id: event.id, format: :json
@@ -58,7 +82,7 @@ RSpec.describe Api::V1::EventsController, type: :controller do
 			events_count = Event.all.count
 
 			# init event
-			event_attrs = FactoryGirl.attributes_for(:event)
+			event_attrs = attributes_for(:event)
 
 			# call create
 			post :create, event: event_attrs, format: :json
@@ -76,7 +100,7 @@ RSpec.describe Api::V1::EventsController, type: :controller do
 		describe 'update' do
 			it 'can modify their own ticket' do
 				# create fake event to be updated
-				event = FactoryGirl.create(:event, owner_user: @user)
+				event = create(:event, owner_user: @user)
 
 				# set attributes to be updated
 				event_attrs = event.as_json.merge!(description: 'Updated by RSpec')
@@ -95,7 +119,7 @@ RSpec.describe Api::V1::EventsController, type: :controller do
 
 			it 'cannot modify non-own ticket' do
 				# create fake event to be updated
-				event = FactoryGirl.create(:event)
+				event = create(:event)
 
 				# set attributes to be updated
 				event_attrs = event.as_json.merge!(description: 'Updated by RSpec')
@@ -117,7 +141,7 @@ RSpec.describe Api::V1::EventsController, type: :controller do
 		describe 'destroy' do
 			it 'can delete their own event' do
 				# create fake event to be destroyed
-				event = FactoryGirl.create(:event, owner_user: @user)
+				event = create(:event, owner_user: @user)
 
 				# get initial count of events
 				events_count = Event.all.count
@@ -134,7 +158,7 @@ RSpec.describe Api::V1::EventsController, type: :controller do
 
 			it 'cannot delete non-own event' do
 				# create fake event to be destroyed
-				event = FactoryGirl.create(:event)
+				event = create(:event)
 
 				# get initial count of events
 				events_count = Event.all.count
@@ -162,7 +186,7 @@ RSpec.describe Api::V1::EventsController, type: :controller do
 			events_count = Event.all.count
 
 			# init event && remove start|end date
-			event_attrs = FactoryGirl.attributes_for(:event)
+			event_attrs = attributes_for(:event)
 			event_attrs.merge!({ start_date: nil, end_date: nil })
 
 			# call create
@@ -180,7 +204,7 @@ RSpec.describe Api::V1::EventsController, type: :controller do
 
 		it 'update' do
 			# create fake event to be updated
-			event = FactoryGirl.create(:event)
+			event = create(:event)
 
 			# set attributes to be updated
 			event_attrs = event.as_json.merge!(start_date: nil, end_date: nil)
