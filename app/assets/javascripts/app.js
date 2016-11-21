@@ -110,6 +110,7 @@ angular.module("wkndrCr", [
             templateUrl: "me/events/_form.html",
             controller: "wkndrNewEvent",
             params: {
+              location_id: { value: null }, 
               date: { value: (new Date()) }
             }
           })

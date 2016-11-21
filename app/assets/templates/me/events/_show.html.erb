@@ -33,12 +33,12 @@
 
 			<div class="col-md-8">
 				<div class="row">
-					<!-- <div class="col-xs-8 col-sm-8 col-md-10">
-						<a class="btn btn-success btn-block" href="#/me/events/new">Plan Event</a>
+					<div class="col-xs-8 col-sm-8 col-md-10">
+						<a class="btn btn-success btn-block" href="#/me/events/new">{{event.location_id ? 'Update' : 'Pick'}} Location</a>
 					</div>
 					<div class="col-xs-4 col-sm-4 col-md-2">
-						<a class="btn btn-primary btn-block pull-right" href="#/me/explore/events/{{event.id}}/edit">Edit</a>
-					</div> -->
+						<a class="btn btn-primary btn-block pull-right" ui-sref="me.showEvent.editEvent({ id: event.id})">Edit</a>
+					</div>
 				</div>
 				
 				<br/>
@@ -52,7 +52,9 @@
 		<!-- attendees -->
 		<div class="row">
 			<div class="col-xs-12">
-				
+				<br/>
+				<h4>Attendees</h4>
+				<!-- todo: directive -->
 			</div>
 		</div>
 
