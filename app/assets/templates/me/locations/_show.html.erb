@@ -40,10 +40,10 @@
 			<div class="col-md-8">
 				<div class="row">
 					<div class="col-xs-8 col-sm-8 col-md-10">
-						<a class="btn btn-success btn-block" href="#/me/events">Plan Event</a>
+						<a class="btn btn-success btn-block" ui-sref="me.events.newEvent({ location_id: location.id })">Plan Event</a>
 					</div>
 					<div class="col-xs-4 col-sm-4 col-md-2">
-						<a class="btn btn-primary btn-block pull-right" href="#/me/explore/locations/{{location.id}}/edit">Edit</a>
+						<a class="btn btn-primary btn-block pull-right" ui-sref="me.showLocation.editLocation({ id: location.id})">Edit</a>
 					</div>
 				</div>
 				

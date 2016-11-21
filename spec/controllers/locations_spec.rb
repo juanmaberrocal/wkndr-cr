@@ -85,7 +85,7 @@ RSpec.describe Api::V1::LocationsController, type: :controller do
 			expect(location.description).to eq(location_attrs[:description])
 		end
 
-		# users cannot destroy locations
+		# users can destroy locations
 		it 'destroy' do
 			# create fake location to be destroyed
 			location = FactoryGirl.create(:location)

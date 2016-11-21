@@ -28,16 +28,32 @@ body {
 		}
 	}
 
+	/* header fonts */
 	h1, h2, h3, h4, h5, h6 {
 		font-family: "Out_of_Tune";
 	}
 
+	/* btn fonts */
 	a.btn,
 	button.btn,
 	input[type="submit"].btn {
 		font-family: "Candy";
 		font-size: 3em;
 		line-height: 0.7em;
+	}
+
+	/* 
+	fix button fonts
+	 - input-group-btn
+	 - datepicker
+	*/
+	div.input-group > span.input-group-btn,
+	div[uib-datepicker-popup-wrap] {
+		button.btn {
+			font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+			font-size: 14px;
+			line-height: 1.42857143em;
+		}
 	}
 }
 

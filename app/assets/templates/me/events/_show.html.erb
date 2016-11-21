@@ -1,0 +1,93 @@
+<div class="page-header">
+  <h1>{{ hasErrors ? 'Uh Oh! An Error Ocurred ...' : event.title }}</h1>
+</div>
+
+<div class="row" ng-show="hasErrors">
+	<div class="col-xs-12">
+		<p class="bg-danger text-danger">{{errors}}</p>	
+	</div>
+</div>
+
+<div class="row" ng-hide="hasErrors">
+	<div class="col-xs-12">
+
+		<div class="row">
+			<div class="col-md-4">
+
+				<!-- details -->
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="form-group">
+				      <label for="description">Description:</label>
+				      <p class="form-control-static">{{event.description}}</p>
+				    </div>
+
+				    <div class="row">
+				    	<div class="col-xs-6">
+								<div class="form-group">
+						      <label for="start_date">Start Date:</label>
+						      <p class="form-control-static">{{event.start_date | date: calendarFormat }}</p>
+						    </div>
+				    	</div>
+				    	<div class="col-xs-6">
+								<div class="form-group">
+						      <label for="end_date">End Date:</label>
+						      <p class="form-control-static">{{event.end_date | date: calendarFormat }}</p>
+						    </div>
+				    	</div>
+				    </div>
+					</div>
+				</div>
+
+		    <div class="row">
+		    	<div class="col-xs-12">
+		    		<!-- <h5>Location Details</h5> -->
+		    		<div class="form-group">
+				      <label for="description">Location Details:</label>
+				      <p class="form-control-static">{{location.description}}</p>
+				    </div>
+		    	</div>
+		    </div>
+
+			</div>
+
+			<div class="col-md-8">
+				<div class="row">
+					<div class="col-xs-8 col-sm-8 col-md-10">
+						<a class="btn btn-success btn-block" ui-sref="me.showEvent.editEventLocation({ id: event.id, location_id: event.location_id })">{{!!event.location_id ? 'Update' : 'Pick'}} Location</a>
+					</div>
+					<div class="col-xs-4 col-sm-4 col-md-2">
+						<a class="btn btn-primary btn-block pull-right" ui-sref="me.showEvent.editEvent({ id: event.id})">Edit</a>
+					</div>
+				</div>
+				
+				<br/>
+				<ng-map id="locationShowGMap" zoom="12" center="[{{location.lat || defaultCenter.lat}},{{location.lng || defaultCenter.lng}}]">
+		      <marker visible="!!event.location_id" position="{{location.lat}},{{location.lng}}"></marker>
+		    </ng-map>
+			</div>
+
+		</div>
+
+		<!-- attendees -->
+		<div class="row">
+			<div class="col-xs-12">
+				<br/>
+				<h4>Attendees</h4>
+				<div id="eventUsers" event-users event-id="event.id" user-id="currentUser.user.id" users="users"></div>
+			</div>
+		</div>
+
+		<!-- reviews -->
+		<div class="row">
+			<div class="col-xs-12">
+				<br/>
+				<h4>Comments</h4>
+			</div>
+		</div>
+
+	</div>
+	
+	<!-- floating view for form -->
+	<div ui-view></div>
+</div>

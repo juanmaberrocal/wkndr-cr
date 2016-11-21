@@ -1,0 +1,68 @@
+div[event-users] {
+	div.userGroup {
+		display: inline-block;
+		vertical-align: top;
+		text-align: center;
+		height: 110px;
+
+		div.userBubble {
+			height: 110px;
+			width: 90px;
+			padding: 3px;
+			float: left;
+
+			div {
+				height: 20px;
+				width: 100%;
+				overflow: hidden;
+				text-overflow: ellipsis;
+			}
+		}
+
+		&.owner {
+			div.userBubble {
+				img {
+					width: 100%;
+				}
+			}
+		}
+
+		&.admin {
+			div.userBubble {
+				img {
+					width: 75%;
+				}
+			}
+		}
+
+		&.accepted,
+		&.pending {
+			div.userBubble {
+				img {
+					width: 50%;
+				}
+			}
+		}
+
+		&.invite {
+			div#inviteFriend {
+				width: 84px;
+				height: 84px;
+				border-radius: 50%;
+				font-size: 3em;
+				position: relative;
+
+				&:hover {
+					cursor: pointer;
+				}
+
+				span.glyphicon {
+				  position: absolute;
+			    top: 47%;
+			    left: 53%;
+			    transform: translate(-50%,-50%);
+				}
+			}
+		}
+	}
+}

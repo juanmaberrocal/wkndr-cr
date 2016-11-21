@@ -8,9 +8,21 @@ WkndrCr::Application.routes.draw do
   namespace :api, defaults: { format: 'json' } do
     namespace :v1 do
 
+      # crud events
+      resources :events do
+        # none
+      end
+
       # crud locations
       resources :locations do
         # none
+      end
+
+      # users
+      resources :users, except: [:index, :new, :create, :show, :edit, :update, :destroy] do
+        member do
+          get 'friends'
+        end
       end
       
     end

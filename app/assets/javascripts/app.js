@@ -5,6 +5,7 @@ angular.module("wkndrCr", [
     "ngResource",
     "ui.bootstrap", 
     "lr.upload", 
+    "ui.calendar",
     "ngMap",
     "ng-token-auth", 
     "templates"
@@ -95,12 +96,46 @@ angular.module("wkndrCr", [
             templateUrl: "me/_index.html",
             controller: "wkndrDashboard"
           })
-          .state("me.events", { // events
+          /*
+          events states
+          */
+          .state("me.events", { // root
             url: "/me/events",
             templateUrl: "me/_events.html",
             controller: "wkndrEvents"
           })
-          .state("me.explore", { // explore
+          // nested events states
+          .state("me.events.newEvent", { // new
+            url: "/new",
+            templateUrl: "me/events/_form.html",
+            controller: "wkndrNewEvent",
+            params: {
+              location_id: { value: null }, 
+              date: { value: (new Date()) }
+            }
+          })
+          .state("me.showEvent", { // show
+            url: "/me/events/:id",
+            templateUrl: "me/events/_show.html",
+            controller: "wkndrShowEvent"
+          })
+          .state("me.showEvent.editEvent", { // edit
+            url: "/edit",
+            templateUrl: "me/events/_form.html",
+            controller: "wkndrEditEvent"
+          })
+          .state("me.showEvent.editEventLocation", { // edit event location
+            url: "/editLocation",
+            templateUrl: "me/events/_formLocation.html",
+            controller: "wkndrEditEventLocation",
+            params: {
+              location_id: { value: null }
+            }
+          })
+          /*
+          explore states
+          */
+          .state("me.explore", { // root
             url: "/me/explore",
             templateUrl: "me/_explore.html",
             controller: "wkndrExplore"
@@ -122,7 +157,10 @@ angular.module("wkndrCr", [
             templateUrl: "me/locations/_form.html",
             controller: "wkndrEditLocation"
           })
-          .state("me.profile", { // profile
+          /*
+          profile states
+          */
+          .state("me.profile", { // root
             url: "/me/profile",
             templateUrl: "me/_profile.html",
             controller: "wkndrProfile"
@@ -137,5 +175,7 @@ angular.module("wkndrCr", [
         // }
   	  }
   	])
-  .run(["currRoute", "Auth", function(currRoute, Auth){
+  .run(["currRoute", "Auth", "mobileCheck", function(currRoute, Auth, mobileCheck){
+    // run mobile check
+    mobileCheck.init();
   }])

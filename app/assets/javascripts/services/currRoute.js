@@ -10,7 +10,7 @@ angular.module("wkndrCr")
 		$rootScope.$on("$stateChangeSuccess", function(ev, curr, params){
 			var rootRegex = /^\/(?:me|legal)\/\w+/,
 				actionRegex = /\/\w+$/;
-
+				
 			$rootScope.currState = {
 				root: (curr.url.match(rootRegex) ? curr.url.match(rootRegex)[0] : null), // prevent null[0] errors
 				action: (curr.url.match(actionRegex) ? curr.url.match(actionRegex)[0] : null), // prevent null[0] errors
