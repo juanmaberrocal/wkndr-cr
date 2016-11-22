@@ -1,0 +1,39 @@
+<div class="modal-header">
+  <h3 class="modal-title" id="modal-title">Add Friends</h3>
+</div>
+<div class="modal-body" id="modal-body">
+
+  <!-- error messages -->
+  <div class="bg-danger" ng-show="$modalCtrl.errors.error">
+    <ul>
+      <li ng-repeat="error in $modalCtrl.errors.messages">{{error}}</li>
+    </ul>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12">
+    	<div class="table-responsive">
+    		<table class="table">
+    			<thead>
+    				<tr>
+    					<th></th>
+    					<th colspan="2">Users</th>
+    				</tr>
+    			</thead>
+    			<tbody>
+    				<tr ng-repeat="user in $modalCtrl.users">
+    					<td></td>
+    					<td><img ng-src="{{ user.avatar.thumb.url }}" alt="{{user.username}}" class="img-circle" /></td>
+    					<td>{{user.username}}</td>
+    				</tr>
+    			</tbody>
+    		</table>
+    	</div>
+    </div>
+  </div>
+
+</div>
+<div class="modal-footer">
+  <button class="btn btn-success" type="button" ng-disabled="$modalCtrl.inviteFriends.length == 0" ng-click="$modalCtrl.ok()">OK</button>
+  <button class="btn btn-default" type="button" ng-click="$modalCtrl.cancel()">Cancel</button>
+</div>

@@ -3,6 +3,7 @@
 //= require_tree ../templates/me
 //
 // Directives
+//= require directives/userFriends
 //= require directives/eventUsers
 //= require directives/locationCard
 //= require directives/stringToNumber
