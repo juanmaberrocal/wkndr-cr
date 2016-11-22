@@ -7,6 +7,21 @@ RSpec.describe Api::V1::UsersController, type: :controller do
 	describe "User Requests" do 
 		login_user # support/controller_macros
 
+		# users can view users
+		it 'index' do 
+			# build fake users
+			users = create_list(:user, rand(1..10))
+
+			# call index
+			get :index, format: :json
+
+			# ensure user can view
+			expect(response).to be_success
+
+			# ensure correct amount of records returned
+			expect(json.length).to eq(users.length)
+		end
+
 		# users can view friends
 		it 'friends' do
 			# build fake user
