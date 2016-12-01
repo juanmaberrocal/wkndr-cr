@@ -25,7 +25,7 @@ angular.module("wkndrCr")
 	    		UsersResource.friends(
 	    			{ id: scope.userId },
 	    			function(response){ // success handle
-	    				scope.users = response;
+	    				scope.users = {owner:response}; // fixme: status (?)
 	    			},
 	    			function(response){ // error handle
 	    				// flag errors
@@ -46,16 +46,47 @@ angular.module("wkndrCr")
 			      controllerAs: "$modalCtrl",
 			      windowClass: "userFriendsModal",
 			      resolve: {
+			      	// friends: function(){
+			      		// return scope.users;
+			      	// },
+			      	users: function(){
+			      		return UsersResource.query();
+			      	},
 			      	friends: function(){
-			      		return scope.users;
+			      		// build array of friend user ids
+			      		var friends = [];
+			      		// loop through each status key
+			      		for (var status in scope.users){
+			      			if (scope.users.hasOwnProperty(status)){
+			      				// loop through each user in status
+					      		for (var i=0; i<scope.users[status].length; i++){
+					      			friends.push(scope.users[status][i].id);
+					      		}
+			      			}
+			      		}
+			      		// return array of user ids
+			      		return friends;
 			      	}
 			      }
+			    }).result.finally(function(){
+			    	// reload friends of user
+		    		UsersResource.friends(
+		    			{ id: scope.userId },
+		    			function(response){ // success handle
+		    				scope.users = {owner:response}; // fixme: status (?)
+		    			},
+		    			function(response){ // error handle
+		    				// flag errors
+		    				scope.errors.hasErrors = true;
+		    				scope.errors.messages = response.data.errors;
+		    			}
+		    		);
 			    });
 	    	});
 	    }
 	  };
 	}])
-	.controller("userFriendsModalCtrl", function($scope, $uibModalInstance, UsersResource, friends){
+	.controller("userFriendsModalCtrl", function($scope, $uibModalInstance, UserFriendsResource, users, friends){
 		// instantiate controllerAs
 		var $modalCtrl = this;
 
@@ -64,47 +95,62 @@ angular.module("wkndrCr")
 			error: false,
 			messages: []
 		};
-
-		// initialize store for friends to be invited
-		$modalCtrl.inviteFriends = [];
 		
 		// load list of users available in system
-		$modalCtrl.users = UsersResource.query();
+		$modalCtrl.users = users;
 
 		// set list of users that are already friends
 		$modalCtrl.friends = friends;
 
-		// bind upload on ok
-		$modalCtrl.ok = function(){
-			// upload({
-			// 	url: "/auth",
-			// 	method: "PUT",
-			// 	data: {
-			// 		avatar: $modalCtrl.avatar.imgFile
-			// 	}
-			// }).then(
-			// 	function(response){ // success response
-			// 		// clear errors
-			// 		$modalCtrl.errors.error = false;
-			// 		$modalCtrl.errors.messages = [];
-					
-			// 		// set new avatars
-			// 		// response.data.data => user data
-			// 		currUser.user.avatar = response.data.data.avatar;
+		// check if user is already a friend
+		$modalCtrl.checkFriendship = function(userId){
+			// true -> already friends
+			return ($modalCtrl.friends.indexOf(userId) > -1);
+		}
 
-			// 		// close modal
-		 //    	$uibModalInstance.close();				
-			// 	},
-			// 	function(response){ // error response
-			// 		// display errors
-			// 		$modalCtrl.errors.error = true;
-			// 		$modalCtrl.errors.messages = response.data.errors;
-			// 	}
-			// );
-	  }
+		// bind add/remove friend
+		$modalCtrl.addRemoveFriend = function(ev, userId){
+			// get button clicked
+			var button = $(ev.target);
+
+			// check if user is friend
+			if ($modalCtrl.checkFriendship(userId)){
+				// if friend, remove
+				UserFriendsResource.destroy(
+					{ id: userId },
+					function(response){ // success handle
+						$modalCtrl.friends.splice($modalCtrl.friends.indexOf(userId), 1);
+
+						// ui update
+						button.removeClass("btn-danger").addClass("btn-success");
+						button.text(button.text().replace("Remove", "Add"));
+					},
+					function(response){ // error handle
+						console.error(response)
+					}
+				)
+
+			}
+			else {
+				// if not friend, add
+				UserFriendsResource.create(
+					{ friend_id: userId },
+					function(response){ // success handle
+						$modalCtrl.friends.push(userId);
+
+						// ui update
+						button.removeClass("btn-success").addClass("btn-danger");
+						button.text(button.text().replace("Add", "Remove"));
+					},
+					function(response){ // error handle
+						console.error(response)
+					}
+				)
+			}
+		}
 
 	  // bind close
-	  $modalCtrl.cancel = function(){
+	  $modalCtrl.close = function(){
 	    $uibModalInstance.dismiss("cancel");
 	  }
 	});
