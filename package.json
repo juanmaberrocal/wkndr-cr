@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Social app to plan weekend trips",
   "engines": {
-    "node": "4.0.2"
+    "node": "4.1.1"
   },
   "repository": {
     "type": "git",
