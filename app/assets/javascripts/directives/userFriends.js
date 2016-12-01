@@ -6,7 +6,7 @@ angular.module("wkndrCr")
 	  		users: "=?",
 	  		userId: "=?"
 	  	},
-	  	templateUrl: "me/directives/_event_users.html",
+	  	templateUrl: "directives/_event_users.html",
 	    link: function(scope, element, attrs){
 	    	// initialize error map
 	    	scope.errors = {

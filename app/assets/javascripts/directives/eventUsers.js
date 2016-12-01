@@ -7,7 +7,7 @@ angular.module("wkndrCr")
 	  		userId: "=",
 	  		users: "="
 	  	},
-	  	templateUrl: "me/directives/_event_users.html",
+	  	templateUrl: "directives/_event_users.html",
 	    link: function (scope, element, attrs) {
 	    	// bind invite click
 	    	element.on("click", "#inviteFriend", function(ev){
