@@ -1,0 +1,45 @@
+<div class="modal-header">
+  <h3 class="modal-title" id="modal-title">Add Friends</h3>
+</div>
+<div class="modal-body" id="modal-body">
+
+  <!-- error messages -->
+  <div class="bg-danger" ng-show="$modalCtrl.errors.error">
+    <ul>
+      <li ng-repeat="error in $modalCtrl.errors.messages">{{error}}</li>
+    </ul>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12">
+    	<div class="table-responsive">
+    		<table class="table">
+    			<thead>
+    				<tr>
+    					<th></th>
+    					<th colspan="2">Users</th>
+    				</tr>
+    			</thead>
+    			<tbody>
+    				<tr ng-repeat="user in $modalCtrl.users" ng-init="isFriend = $modalCtrl.checkFriendship(user.id)">
+    					<td>
+                <div class="btn-group" data-toggle="buttons">
+                  <label class="btn" ng-class="{ active: isFriend, 'btn-danger': isFriend, 'btn-success': !isFriend }"  ng-click="$modalCtrl.addRemoveFriend($event, user.id)">
+                    <input type="checkbox" autocomplete="off" ng-checked="false">
+                    {{ isFriend ? 'Remove' : 'Add' }} Friend
+                  </label>
+                </div>
+              </td>
+    					<td><img ng-src="{{user.avatar.thumb.url}}" alt="{{user.username}}" class="img-circle" /></td>
+    					<td>{{user.username}}</td>
+    				</tr>
+    			</tbody>
+    		</table>
+    	</div>
+    </div>
+  </div>
+
+</div>
+<div class="modal-footer">
+  <button class="btn btn-default" type="button" ng-click="$modalCtrl.close()">Close</button>
+</div>

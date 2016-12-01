@@ -12,6 +12,17 @@ module Api
 			# default to json response
 			respond_to :json
 
+			# GET /users
+			def index
+				begin
+					# return response as json array of users (exclude self)
+					render json: User.where.not(id: current_user.id)
+				rescue => e
+					# catch errors and return message
+					build_error_response(e.message)
+				end
+			end
+
 			# GET /users/:id/friends.json
 			def friends
 				begin

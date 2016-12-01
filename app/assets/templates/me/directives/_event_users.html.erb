@@ -1,4 +1,13 @@
-<div class="row">
+<!-- error display -->
+<div class="row errorDisplay" ng-show="errors.hasErrors">
+	<div class="col-xs-12 bg-danger text-danger">
+  	<h6>Uh Oh! An Error Ocurred ...</h6>
+		<p ng-repeat="error in errors.messages">{{error}}</p>	
+	</div>
+</div>
+
+<!-- user display -->
+<div class="row" ng-hide="errors.hasErrors">
 	<div class="col-xs-12">
 		
 		<!-- user groups -->

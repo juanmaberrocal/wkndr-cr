@@ -93,7 +93,7 @@ angular.module("wkndrCr", [
           })
           .state("me.dashboard", { // dashboard
             url: "/me/dashboard",
-            templateUrl: "me/_index.html",
+            templateUrl: "me/_dashboard.html",
             controller: "wkndrDashboard"
           })
           /*
