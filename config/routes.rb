@@ -24,6 +24,11 @@ WkndrCr::Application.routes.draw do
           get 'friends'
         end
       end
+
+      # user friends
+      resources :user_friends, only: [:create, :destroy] do
+        # none
+      end
       
     end
   end
