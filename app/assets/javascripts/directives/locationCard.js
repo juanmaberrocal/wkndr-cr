@@ -7,7 +7,7 @@ angular.module("wkndrCr")
 	  		noClick: "=",
 	  		replaceClick: "="
 	  	},
-	  	templateUrl: "me/directives/_location_card.html",
+	  	templateUrl: "directives/_location_card.html",
 	    link: function (scope, element, attrs) {
 	    	if (typeof attrs.noClick != "undefined"){
 	    		// no binding

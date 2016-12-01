@@ -1,5 +1,9 @@
 // App
-//= require_tree ./me
+//
+// Controllers
+//= require_tree ./controllers/me
+//
+// Templates
 //= require_tree ../templates/me
 //
 // Directives
