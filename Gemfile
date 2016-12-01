@@ -1,8 +1,16 @@
 source 'https://rubygems.org'
 
+# Specify ruby version
+# ruby '2.3.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5.1'
+
+# Use puma
+gem 'puma'
+
+# Use foreman to run puma
+gem 'foreman'
 
 # Use pg as the database for Active Record
 gem 'pg'
