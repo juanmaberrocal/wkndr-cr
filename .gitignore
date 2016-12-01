@@ -47,3 +47,6 @@ pickle-email-*.html
 
 # Ignore application configuration
 /config/application.yml
+
+# Ignore node modules (bower) installed
+/node_modules
