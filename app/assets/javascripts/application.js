@@ -40,4 +40,5 @@
 //= require services/mobileCheck
 //
 // Layouts
+//= require_tree ../templates/directives
 //= require_tree ../templates/layouts
