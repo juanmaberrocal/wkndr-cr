@@ -7,9 +7,10 @@ source 'https://rubygems.org'
 gem 'rails', '4.2.5.1'
 
 # Use puma
-gem 'puma'
-
+# Use rack-timeout to match heroku timeout
 # Use foreman to run puma
+gem 'puma'
+gem 'rack-timeout'
 gem 'foreman'
 
 # Use pg as the database for Active Record
