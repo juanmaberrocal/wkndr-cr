@@ -43,7 +43,7 @@ angular.module("wkndrCr")
 					$uibModal.open({
 			      ariaLabelledBy: "modal-title",
 			      ariaDescribedBy: "modal-body",
-			      templateUrl: "me/directives/_userFriendsModal.html",
+			      templateUrl: "directives/_userFriendsModal.html",
 			      controller: "userFriendsModalCtrl",
 			      controllerAs: "$modalCtrl",
 			      windowClass: "userFriendsModal",
