@@ -1,7 +1,7 @@
 // App
 //
 // Controllers
-//= require_tree ./controllers/info
+// require_tree ./controllers/info
 //
 // Templates
 //= require_tree ../templates/info
