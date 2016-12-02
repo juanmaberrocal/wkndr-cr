@@ -51,24 +51,28 @@ angular.module("wkndrCr")
 			      	// friends: function(){
 			      		// return scope.users;
 			      	// },
-			      	users: function(){
-			      		return UsersResource.query();
-			      	},
-			      	friends: function(){
-			      		// build array of friend user ids
-			      		var friends = [];
-			      		// loop through each status key
-			      		for (var status in scope.users){
-			      			if (scope.users.hasOwnProperty(status)){
-			      				// loop through each user in status
-					      		for (var i=0; i<scope.users[status].length; i++){
-					      			friends.push(scope.users[status][i].id);
-					      		}
-			      			}
-			      		}
-			      		// return array of user ids
-			      		return friends;
-			      	}
+			      	users: [
+				      	function(){
+				      		return UsersResource.query();
+				      	}
+				      ],
+			      	friends: [
+				      	function(){
+				      		// build array of friend user ids
+				      		var friends = [];
+				      		// loop through each status key
+				      		for (var status in scope.users){
+				      			if (scope.users.hasOwnProperty(status)){
+				      				// loop through each user in status
+						      		for (var i=0; i<scope.users[status].length; i++){
+						      			friends.push(scope.users[status][i].id);
+						      		}
+				      			}
+				      		}
+				      		// return array of user ids
+				      		return friends;
+				      	}
+				      ]
 			      }
 			    }).result.finally(function(){
 			    	// reload friends of user

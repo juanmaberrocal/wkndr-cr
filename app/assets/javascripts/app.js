@@ -67,9 +67,12 @@ angular.module("wkndrCr", [
             url: "/legal",
             templateUrl: "layouts/_legal.html", // wrapper for legal views
             resolve: {
-              currRoute: function(currRoute){
-                return currRoute.getCurrState()
-              }
+              currRoute: [
+                "currRoute", 
+                function(currRoute){
+                  return currRoute.getCurrState()
+                }
+              ]
             }
           })
           .state("info.legal.terms", { // terms and conditions
@@ -86,9 +89,12 @@ angular.module("wkndrCr", [
             abstract: true,
             templateUrl: "layouts/_me.html", // wrapper for child authenticated views
             resolve: {
-              auth: function($auth){
-                return $auth.validateUser();
-              }
+              auth: [
+                "$auth",
+                function($auth){
+                  return $auth.validateUser();
+                }
+              ]
             }
           })
           .state("me.dashboard", { // dashboard

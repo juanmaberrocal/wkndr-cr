@@ -12,9 +12,11 @@ angular.module("wkndrCr")
 	      controllerAs: "$modalCtrl",
 	      windowClass: "avatarModal",
 	      resolve: {
-	        currUser: function () {
-	          return Auth.getCurrentUser();
-	        }
+	        currUser: [
+	        	function () {
+		          return Auth.getCurrentUser();
+		        }
+		      ]
 	      }
 	    });
 		}

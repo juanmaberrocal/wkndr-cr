@@ -22,12 +22,16 @@ angular.module("wkndrCr")
 			      controllerAs: "$modalCtrl",
 			      windowClass: "inviteModal",
 			      resolve: {
-			      	eventId: function(){ 
-			      		return scope.eventId;
-			      	},
-			      	friends: function(){
-			      		return UsersResource.friends({ id: scope.userId });
-			      	}
+			      	eventId: [
+				      	function(){ 
+				      		return scope.eventId;
+				      	}
+				      ],
+			      	friends: [
+				      	function(){
+				      		return UsersResource.friends({ id: scope.userId });
+				      	}
+				      ]
 			      }
 			    });
 	    	});
