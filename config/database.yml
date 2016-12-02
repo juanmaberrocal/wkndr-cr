@@ -27,5 +27,4 @@ test:
  #
 
 production:
-  database: wkndr_cr_prd
-  <<: *default
+  url: <%= ENV['DATABASE_URL'] %>
