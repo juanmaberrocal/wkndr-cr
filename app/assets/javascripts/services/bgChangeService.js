@@ -6,6 +6,7 @@
   */
 angular.module("wkndrCr")
 	.factory("bgChangeService", [
+		"$interval",
 		function($interval){
 	    var $this = this,
 	        bgClasses = ["wkndr-bg-1", "wkndr-bg-2", "wkndr-bg-3"]; // map backgrounds available

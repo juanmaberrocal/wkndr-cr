@@ -1,5 +1,6 @@
 angular.module("wkndrCr")
 	.directive("locationCard", [
+		"currRoute",
 		function(currRoute) {
 	  return {
 	    restrict: "E",
