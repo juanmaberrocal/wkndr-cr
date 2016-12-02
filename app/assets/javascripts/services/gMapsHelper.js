@@ -1,5 +1,7 @@
 angular.module("wkndrCr")
-	.service("GMapsHelper", ["$rootScope", function($rootScope){
+	.service("GMapsHelper", [
+		"$rootScope", 
+		function($rootScope){
 		// set this for nested calls
 		var self = this;
 

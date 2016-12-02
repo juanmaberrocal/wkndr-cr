@@ -1,4 +1,6 @@
 angular.module("wkndrCr")
-	.controller('wkndrDashboard', ["$scope", function($scope){
+	.controller('wkndrDashboard', [
+		"$scope", 
+		function($scope){
 		
 	}]);

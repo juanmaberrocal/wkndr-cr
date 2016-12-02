@@ -1,5 +1,7 @@
 angular.module("wkndrCr")
-	.factory("EventsResource", ["$resource", function($resource){
+	.factory("EventsResource", [
+		"$resource", 
+		function($resource){
 		return $resource("/api/v1/events/:id", { id: "@id" }, {
 			// index query all
 			query: { method: "GET", isArray: true },

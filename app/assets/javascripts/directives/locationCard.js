@@ -1,5 +1,6 @@
 angular.module("wkndrCr")
-	.directive("locationCard", function(currRoute) {
+	.directive("locationCard", [
+		function(currRoute) {
 	  return {
 	    restrict: "E",
 	  	scope: {
@@ -26,4 +27,4 @@ angular.module("wkndrCr")
 	    	}
 	    }
 	  };
-	});
+	}]);

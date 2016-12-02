@@ -1,5 +1,7 @@
 angular.module("wkndrCr")
-	.service("Auth", ["$rootScope", "$state", "$auth", function($rootScope, $state, $auth){
+	.service("Auth", [
+		"$rootScope", "$state", "$auth",
+		function($rootScope, $state, $auth){
 		// set this for nested calls
 		var self = this;
 

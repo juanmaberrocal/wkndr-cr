@@ -1,7 +1,9 @@
 
 angular.module("wkndrCr")
 	// new
-	.controller("wkndrNewEvent", ["$scope", "currRoute", "calendarHelper", "EventsResource", function($scope, currRoute, calendarHelper, EventsResource){
+	.controller("wkndrNewEvent", [
+		"$scope", "currRoute", "calendarHelper", "EventsResource", 
+		function($scope, currRoute, calendarHelper, EventsResource){
 		// track if new record
 		$scope.isNew = true;
 

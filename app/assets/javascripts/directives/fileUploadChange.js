@@ -1,5 +1,6 @@
 angular.module("wkndrCr")
-	.directive("fileUploadChange", function() {
+	.directive("fileUploadChange", [
+		function() {
 	  return {
 	    restrict: "A",
 	    link: function (scope, element, attrs) {
@@ -7,4 +8,4 @@ angular.module("wkndrCr")
 	      element.bind('change', onChangeHandler);
 	    }
 	  };
-	});
+	}]);

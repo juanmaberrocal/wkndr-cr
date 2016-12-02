@@ -1,5 +1,7 @@
 angular.module("wkndrCr")
-	.service("currRoute", ["$rootScope", "$state", "$window", function($rootScope, $state, $window){
+	.service("currRoute", [
+		"$rootScope", "$state", "$window", 
+		function($rootScope, $state, $window){
 		// set this for nested calls
 		var self = this;
 

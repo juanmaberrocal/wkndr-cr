@@ -1,5 +1,7 @@
 angular.module("wkndrCr")
-	.service("mobileCheck", ["$rootScope", function($rootScope){
+	.service("mobileCheck", [
+		"$rootScope", 
+		function($rootScope){
 		// set this for nested calls
 		var self = this;
 

@@ -1,5 +1,7 @@
 angular.module("wkndrCr")
-	.controller('wkndrEvents', ["$scope", "mobileCheck", "currRoute", "EventsResource", function($scope, mobileCheck, currRoute, EventsResource){
+	.controller('wkndrEvents', [
+		"$scope", "mobileCheck", "currRoute", "EventsResource", 
+		function($scope, mobileCheck, currRoute, EventsResource){
 		// initialize calendar event source
 		$scope.events = []
 		$scope.eventsSource = [$scope.events];

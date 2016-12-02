@@ -1,5 +1,7 @@
 angular.module("wkndrCr")
-	.directive("userFriends", ["$uibModal", "Auth", "UsersResource", function($uibModal, Auth, UsersResource) {
+	.directive("userFriends", [
+		"$uibModal", "Auth", "UsersResource", 
+		function($uibModal, Auth, UsersResource) {
 	  return {
 	    restrict: "A",
 	  	scope: {

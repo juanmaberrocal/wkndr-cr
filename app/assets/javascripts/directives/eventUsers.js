@@ -1,5 +1,7 @@
 angular.module("wkndrCr")
-	.directive("eventUsers", ["$uibModal", "UsersResource", function($uibModal, UsersResource) {
+	.directive("eventUsers", [
+		"$uibModal", "UsersResource", 
+		function($uibModal, UsersResource) {
 	  return {
 	    restrict: "A",
 	  	scope: {

@@ -1,7 +1,9 @@
 
 angular.module("wkndrCr")
 	// new
-	.controller("wkndrNewLocation", ["$scope", "currRoute", "GMapsHelper", "LocationsResource", function($scope, currRoute, GMapsHelper, LocationsResource){
+	.controller("wkndrNewLocation", [
+		"$scope", "currRoute", "GMapsHelper", "LocationsResource", 
+		function($scope, currRoute, GMapsHelper, LocationsResource){
 		// track if new record
 		$scope.isNew = true;
 

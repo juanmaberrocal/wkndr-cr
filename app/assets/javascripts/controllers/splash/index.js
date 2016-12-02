@@ -1,6 +1,7 @@
 angular.module("wkndrCr")
-	.controller('wkndrSplash', ["$scope", "bgChangeService", function($scope, bgChangeService){
-		
+	.controller("wkndrSplash", [
+		"$scope", "bgChangeService", 
+		function($scope, bgChangeService){
 		// click function to expand/collapse jumbo text container
 		$scope.expandCollapseJumbo = function(ev){
 			var $this = $(ev.currentTarget),

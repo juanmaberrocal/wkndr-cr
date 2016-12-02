@@ -1,5 +1,6 @@
 angular.module("wkndrCr")
-	.directive('stringToNumber', function() {
+	.directive("stringToNumber", [
+		function() {
 	  return {
 	    require: 'ngModel',
 	    link: function(scope, element, attrs, ngModel) {
@@ -11,4 +12,4 @@ angular.module("wkndrCr")
 	      });
 	    }
 	  };
-	});
+	}]);

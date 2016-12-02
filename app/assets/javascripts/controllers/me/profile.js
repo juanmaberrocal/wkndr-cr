@@ -1,6 +1,7 @@
 angular.module("wkndrCr")
-	.controller('wkndrProfile', ["$scope", "$uibModal", "Auth", function($scope, $uibModal, Auth){
-
+	.controller('wkndrProfile', [
+		"$scope", "$uibModal", "Auth", 
+		function($scope, $uibModal, Auth){
 		// open modal on avatar click
 		$scope.openAvatarModal = function(){
 			$uibModal.open({

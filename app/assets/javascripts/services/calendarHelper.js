@@ -1,5 +1,7 @@
 angular.module("wkndrCr")
-	.service("calendarHelper", ["$rootScope", function($rootScope){
+	.service("calendarHelper", [
+		"$rootScope", 
+		function($rootScope){
 		// set this for nested calls
 		var self = this;
 
