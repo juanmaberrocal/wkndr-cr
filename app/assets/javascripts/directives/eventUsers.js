@@ -38,53 +38,56 @@ angular.module("wkndrCr")
 	    }
 	  };
 	}])
-	.controller("inviteModalCtrl", function($scope, $uibModalInstance, eventId, friends){
-		// instantiate controllerAs
-		var $modalCtrl = this;
+	.controller("inviteModalCtrl", [
+		"$scope", "$uibModalInstance", "eventId", "friends",
+		function($scope, $uibModalInstance, eventId, friends){
+			// instantiate controllerAs
+			var $modalCtrl = this;
 
-		// set user for modal
-		$modalCtrl.friends = friends;
+			// set user for modal
+			$modalCtrl.friends = friends;
 
-		// initialize error bank
-		$modalCtrl.errors = {
-			error: false,
-			messages: []
-		};
+			// initialize error bank
+			$modalCtrl.errors = {
+				error: false,
+				messages: []
+			};
 
-		// initialize store for friends to be invited
-		$modalCtrl.inviteFriends = [];
+			// initialize store for friends to be invited
+			$modalCtrl.inviteFriends = [];
 
-		// bind upload on ok
-		$modalCtrl.ok = function(){
-			// upload({
-			// 	url: "/auth",
-			// 	method: "PUT",
-			// 	data: {
-			// 		avatar: $modalCtrl.avatar.imgFile
-			// 	}
-			// }).then(
-			// 	function(response){ // success response
-			// 		// clear errors
-			// 		$modalCtrl.errors.error = false;
-			// 		$modalCtrl.errors.messages = [];
-					
-			// 		// set new avatars
-			// 		// response.data.data => user data
-			// 		currUser.user.avatar = response.data.data.avatar;
+			// bind upload on ok
+			$modalCtrl.ok = function(){
+				// upload({
+				// 	url: "/auth",
+				// 	method: "PUT",
+				// 	data: {
+				// 		avatar: $modalCtrl.avatar.imgFile
+				// 	}
+				// }).then(
+				// 	function(response){ // success response
+				// 		// clear errors
+				// 		$modalCtrl.errors.error = false;
+				// 		$modalCtrl.errors.messages = [];
+						
+				// 		// set new avatars
+				// 		// response.data.data => user data
+				// 		currUser.user.avatar = response.data.data.avatar;
 
-			// 		// close modal
-		 //    	$uibModalInstance.close();				
-			// 	},
-			// 	function(response){ // error response
-			// 		// display errors
-			// 		$modalCtrl.errors.error = true;
-			// 		$modalCtrl.errors.messages = response.data.errors;
-			// 	}
-			// );
-	  }
+				// 		// close modal
+			 //    	$uibModalInstance.close();				
+				// 	},
+				// 	function(response){ // error response
+				// 		// display errors
+				// 		$modalCtrl.errors.error = true;
+				// 		$modalCtrl.errors.messages = response.data.errors;
+				// 	}
+				// );
+		  }
 
-	  // bind close
-	  $modalCtrl.cancel = function(){
-	    $uibModalInstance.dismiss("cancel");
-	  }
-	});
+		  // bind close
+		  $modalCtrl.cancel = function(){
+		    $uibModalInstance.dismiss("cancel");
+		  }
+		}
+	]);
